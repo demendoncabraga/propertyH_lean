@@ -1,0 +1,15 @@
+/.lake/
+/paper/*.aux
+/paper/*.fls
+/paper/*.fdb_latexmk
+/paper/*.log
+/paper/*.out
+/paper/*.pdf
+/paper/*.synctex.gz
+__pycache__/
+*.pyc
+.DS_Store
+__MACOSX/
+
+# Windows download metadata
+*:Zone.Identifier
