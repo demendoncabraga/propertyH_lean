@@ -1,5 +1,5 @@
-import PropertyH.RadialUniform
 import PropertyH.Averages
+import PropertyH.RadialUniform
 
 noncomputable section
 namespace PropertyH
@@ -66,9 +66,6 @@ theorem radialTruncate_dist_le (A : ℝ) (hA : 0 ≤ A) (x y : X) :
           div_eq_mul_inv, mul_smul, Subtype.dist_eq, dist_smul₀, Real.norm_eq_abs, abs_of_nonneg hA]
       rw [he]
       exact hscale.trans ht
-theorem radialTruncate_lipschitz (A : ℝ) (hA : 0 ≤ A) :
-    LipschitzWith 2 (radialTruncate (X := X) A) := by
-  exact LipschitzWith.of_dist_le_mul (radialTruncate_dist_le A hA)
 
 variable {I : Type*} [Fintype I] [Nonempty I]
 

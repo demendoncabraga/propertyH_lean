@@ -1,5 +1,4 @@
 import PropertyH.ExpanderEstimates
-import PropertyH.Averages
 
 /-! Transport PIII through the target space's linear isometric embedding into L1. -/
 noncomputable section

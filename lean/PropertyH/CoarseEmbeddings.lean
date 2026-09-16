@@ -15,7 +15,7 @@ def EquiCoarseGraphEmbeddings (E : ExpanderFamily) (X : ℕ → Type*)
 def ContainsCoarseExpanders (X : Type*) [NormedAddCommGroup X] : Prop :=
   ∃ E : ExpanderFamily, EquiCoarseGraphEmbeddings E (fun _ => X)
 
-/-- The previous biLipschitz hypothesis is a special case of the revised hypothesis. -/
+/-- Uniform biLipschitz bounds on the finite metric embeddings give coarse control. -/
 theorem EquiGraphEmbeddings.to_coarse {E : ExpanderFamily} {X : ℕ → Type*}
     [∀ n, NormedAddCommGroup (X n)] (h : EquiGraphEmbeddings E X) :
     EquiCoarseGraphEmbeddings E X := by

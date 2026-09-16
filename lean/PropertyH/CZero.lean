@@ -1,4 +1,3 @@
-import PropertyH.FiniteSup
 import Mathlib.Topology.ContinuousMap.ZeroAtInfty
 
 noncomputable section
@@ -32,8 +31,4 @@ theorem finiteToCZero_isometry (n : ℕ) : Isometry (finiteToCZero n) := by
     simpa only [ZeroAtInftyContinuousMap.dist_toBCF_eq_dist, show (finiteToCZero n f).toBCF i.val = f i from dif_pos i.isLt, show (finiteToCZero n g).toBCF i.val = g i from dif_pos i.isLt] using
       (BoundedContinuousFunction.dist_coe_le_dist
         (f := (finiteToCZero n f).toBCF) (g := (finiteToCZero n g).toBCF) i.val)
-/-- The finite metric embeddings needed for the paper's c₀ consequence. -/
-theorem finite_metric_embeds_cZero {V : Type*} [Fintype V] [PseudoMetricSpace V] :
-    ∃ f : V → CZero, Isometry f := by
-  exact ⟨_, (finiteToCZero_isometry (Fintype.card V)).comp finiteDistanceCoordinates_isometry⟩
 end PropertyH

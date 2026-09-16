@@ -1,5 +1,4 @@
 import PropertyH.Averages
-import PropertyH.RadialExtension
 
 /-! Continuous finite averages and the quantitative lower bounds in the main proof. -/
 noncomputable section

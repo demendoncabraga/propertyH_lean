@@ -1,5 +1,4 @@
 import PropertyH.CoarseEmbeddings
-import PropertyH.GroupEmbeddings
 
 namespace PropertyH
 open Filter

@@ -1,4 +1,4 @@
-import PropertyH.Expanders
+import Mathlib
 import Mathlib.Logic.Equiv.Fintype
 import Mathlib.Data.Fintype.CardEmbedding
 import Mathlib.Logic.Equiv.Set
@@ -56,13 +56,6 @@ theorem card_perms_into {V : Type*} [Fintype V] [DecidableEq V] (A B : Finset V)
   simp only [hfib, Finset.sum_const, Finset.card_univ, smul_eq_mul,
     Fintype.card_embedding_eq, Fintype.card_coe] at htotal
   simpa only [Fintype.card_subtype] using htotal.symm
-
-/-- The equivalent factorial quotient when A is no larger than B. -/
-theorem card_perms_into_factorial {V : Type*} [Fintype V] [DecidableEq V]
-    (A B : Finset V) (hAB : A.card ≤ B.card) :
-    (Finset.univ.filter fun σ : Equiv.Perm V => ∀ u ∈ A, σ u ∈ B).card =
-      (B.card.factorial / (B.card - A.card).factorial) * (Fintype.card V - A.card).factorial := by
-  rw [card_perms_into, Nat.descFactorial_eq_div hAB]
 
 /-- Sampling without replacement is no more likely to stay in B than independent sampling. -/
 theorem descFactorial_ratio_bound (a b n : ℕ) (hbn : b ≤ n) :

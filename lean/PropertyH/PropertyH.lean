@@ -1,6 +1,6 @@
 import PropertyH.SphereDegree
 
-/-! Degree-one Property (H), with the earlier homeomorphism formulation retained. -/
+/-! The manuscript’s degree-one definition of Property (H). -/
 noncomputable section
 namespace PropertyH
 
@@ -12,20 +12,6 @@ def submoduleSphereInclusion {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ
     (S : Submodule ℝ X) : C(UnitSphere S, UnitSphere X) where
   toFun x := ⟨((x : S) : X), x.property⟩
   continuous_toFun := by fun_prop
-
-/-- Legacy definition from the earlier manuscript (homotopic homeomorphism restrictions).
-`$F\colon S_X\to S_{\ell_2}$` is uniformly continuous; increasing finite-dimensional
-`$X_n,H_n$` satisfy `$X=\overline{\bigcup_nX_n}$`, and the restrictions of `F`
-map into `$S_{H_n}$` and are homotopic to homeomorphisms. -/
-def HasHomeomorphicPropertyH (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] : Prop :=
-  ∃ F : C(UnitSphere X, UnitSphere Hilbert), UniformContinuous F ∧
-    ∃ (A : ℕ → Submodule ℝ X) (B : ℕ → Submodule ℝ Hilbert),
-      Monotone A ∧ Monotone B ∧
-      (∀ n, FiniteDimensional ℝ (A n)) ∧ (∀ n, FiniteDimensional ℝ (B n)) ∧
-      Dense (⋃ n, (A n : Set X)) ∧
-      ∀ n, ∃ f : C(UnitSphere (A n), UnitSphere (B n)),
-        (submoduleSphereInclusion (B n)).comp f = F.comp (submoduleSphereInclusion (A n)) ∧
-        ∃ e : UnitSphere (A n) ≃ₜ UnitSphere (B n), f.Homotopic ⟨e, e.continuous⟩
 
 /-- Source: paragraph before `Cor.Prop.H` in the revised manuscript.
 Each finite-stage restriction has degree one, witnessed on top reduced integral

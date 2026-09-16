@@ -1,4 +1,5 @@
-import PropertyH.Corollaries
+import PropertyH.CoarseMain
+import PropertyH.ExpanderExistence
 import PropertyH.GraphMetricSpace
 
 noncomputable section
@@ -46,17 +47,12 @@ theorem uniformlyContainsFiniteMetrics_of_sup_embeddings
   simpa only [← dist_eq_norm, finiteDistanceCoordinates_isometry.dist_eq] using
     hf (finiteDistanceCoordinates v) (finiteDistanceCoordinates w)
 
-theorem containsExpanders_of_uniformlyContainsFiniteMetrics
-    {X : Type*} [NormedAddCommGroup X]
-    (hX : UniformlyContainsFiniteMetrics X) : ContainsExpanders X :=
-  ⟨PermutationExpanders.constructedExpanderFamily,
-    expander_embeddings_of_uniformlyContainsFiniteMetrics hX _⟩
-
 theorem not_hasPropertyH_of_uniformlyContainsFiniteMetrics
     {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
     (hX : UniformlyContainsFiniteMetrics X) : ¬ HasPropertyH X :=
-  not_hasPropertyH_of_containsExpanders X
-    (containsExpanders_of_uniformlyContainsFiniteMetrics hX)
+  not_hasPropertyH_of_containsCoarseExpanders X
+    ⟨PermutationExpanders.constructedExpanderFamily,
+      (expander_embeddings_of_uniformlyContainsFiniteMetrics hX _).to_coarse⟩
 
 /-- Uniformly containing finite sup spaces suffices to contain every finite metric. -/
 theorem uniformlyContainsFiniteMetrics_of_uniformlyContainsFiniteSup

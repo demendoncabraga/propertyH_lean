@@ -1,5 +1,5 @@
-import PropertyH.CoarseMain
 import PropertyH.CoarseGroups
+import PropertyH.CoarseMain
 import PropertyH.OsajdaGroup
 
 namespace PropertyH

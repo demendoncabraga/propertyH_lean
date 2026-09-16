@@ -6,11 +6,9 @@ Adapted from upstream commit 770940ddf9878cf61952ed53d910b92bca841838.
 import Mathlib.Analysis.Convex.Intrinsic
 import Mathlib.Analysis.Convex.GaugeRescale
 
-
 /-
 some helper lemmas involving homeomorphisms.
 -/
-
 
 lemma homeo_unit_ball {V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
@@ -27,7 +25,6 @@ lemma homeo_unit_ball {V : Type*}
   rw [he.2.1] at e2
   exact Nonempty.intro e2
 }
-
 
 theorem homeo_of_finrank_eq {V W : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
@@ -61,7 +58,6 @@ theorem homeo_of_finrank_eq {V W : Type*}
   apply Nonempty.intro
   exact e2.symm.trans e1
 }
-
 
 lemma unit_cube_homeo_unit_ball {n}
     : Nonempty (Set.Icc (0 : Fin n → ℝ) 1 ≃ₜ Metric.closedBall (0 : Fin n → ℝ) 1 ) := by

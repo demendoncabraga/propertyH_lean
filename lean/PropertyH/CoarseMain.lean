@@ -1,8 +1,8 @@
 import PropertyH.CoarseNormalized
-import PropertyH.NormalizedMain
 import PropertyH.CoarsePaving
-import PropertyH.VaryingMain
-import PropertyH.BrouwerFixedPoint
+import PropertyH.HilbertL1
+import PropertyH.NormalizedMain
+import PropertyH.SphereRestrictions
 
 noncomputable section
 namespace PropertyH
@@ -60,13 +60,5 @@ theorem not_hasPropertyH_of_containsCoarseExpanders
     (fun n => A (m n)) (fun n => B (m n)) μ j hm (fun n => f (m n)) hmod
   obtain ⟨n, y, hy⟩ := hnull.exists
   exact (hdegree (m n)).not_nullhomotopic ⟨y, hy⟩
-
-/-- Compatibility wrapper retaining the old helper signature.
-Degree-one non-null-homotopy makes the extra sphere-topology premise unnecessary. -/
-theorem not_hasPropertyH_of_containsCoarseExpanders_of_sphere_noncontractible
-    (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
-    (_hsphere : ∀ S : Submodule ℝ X, FiniteDimensional ℝ S → ¬ ContractibleSpace (UnitSphere S))
-    (hX : ContainsCoarseExpanders X) : ¬ HasPropertyH X :=
-  not_hasPropertyH_of_containsCoarseExpanders X hX
 
 end PropertyH

@@ -1,5 +1,6 @@
-import PropertyH.PairwiseDistances
 import PropertyH.Averages
+import PropertyH.Connectivity
+import PropertyH.PairwiseDistances
 
 noncomputable section
 namespace PropertyH

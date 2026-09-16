@@ -2,7 +2,7 @@ import PropertyH.Expanders
 namespace PropertyH
 
 /-- External Osajda group-construction statement, explicitly assumed under the
-user's modulo-two-results scope. Its construction is not part of this verification. -/
+manuscript’s Osajda-only external scope. Its construction is not part of this verification. -/
 def OsajdaExpanderGroup : Prop :=
     ∃ (Γ : Type) (g : Group Γ) (_ : Countable Γ),
       letI := g

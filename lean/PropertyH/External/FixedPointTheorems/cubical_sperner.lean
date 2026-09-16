@@ -1,16 +1,12 @@
+import PropertyH.External.FixedPointTheorems.cubical_sperner_prep
 /-
 Copyright (c) 2026 harfe. Distributed under the MIT license; see LICENSE.
 Adapted from upstream commit 770940ddf9878cf61952ed53d910b92bca841838.
 -/
 
-import PropertyH.External.FixedPointTheorems.cubical_sperner_prep
-
-
 noncomputable section
 set_option backward.isDefEq.respectTransparency.types false
 open Classical
-
-
 
 section completeness
 
@@ -47,7 +43,6 @@ lemma complete_simplex_iff {SC} m I(hs : simplex SC m I) :
   }
 }
 
-
 lemma rl_inj_of_complete {SC} m I (hcs : complete_simplex SC m I):
     ∀ i1 i2, SC.RL (I i1) = SC.RL (I i2) → i1 = i2 := by {
   let f1 : Fin (m+1) → Fin (m+1) := fun j ↦ Fin.ofNat _ (SC.RL (I j))
@@ -68,7 +63,6 @@ lemma rl_inj_of_complete {SC} m I (hcs : complete_simplex SC m I):
   rw [ha]
   exact Fin.cast_val_eq_self c
 }
-
 
 lemma char_complete_face {SC n1 hn1} I J (hs : simplex SC SC.n J) :
     complete_simplex SC n1 I ∧ is_face SC I J
@@ -112,7 +106,6 @@ lemma char_complete_face {SC n1 hn1} I J (hs : simplex SC SC.n J) :
     rfl
   }
 }
-
 
 lemma complete_child_uniq {SC n1} {hn1 : n1 + 1 = SC.n} J (hcs : complete_simplex SC SC.n J) :
     ∃! (I : Fin (n1+1) → SC.G), complete_simplex SC n1 I ∧ is_face SC I J := by {
@@ -173,7 +166,6 @@ lemma complete_child_uniq {SC n1} {hn1 : n1 + 1 = SC.n} J (hcs : complete_simple
   rw [h2]
   exact (Eq.symm hi)
 }
-
 
 lemma incomplete_childs {SC n1} {hn1 : n1 + 1 = SC.n} J (hs : simplex SC SC.n J)
     (hnc : ¬ complete_simplex SC SC.n J):
@@ -288,7 +280,6 @@ lemma incomplete_childs {SC n1} {hn1 : n1 + 1 = SC.n} J (hs : simplex SC SC.n J)
   }
 }
 
-
 lemma complete_boundary_face_last {SC n1} {hn1 : n1 + 1 = SC.n} (I : Fin (n1 + 1) → SC.G)
     (hcbf : complete_boundary_face SC I) :
     ∀ i, ∀ j, j.1 + 1 = SC.n →  (I i j).1 = SC.p := by {
@@ -333,8 +324,6 @@ lemma complete_boundary_face_last {SC n1} {hn1 : n1 + 1 = SC.n} (I : Fin (n1 + 1
 }
 
 end completeness
-
-
 
 section handshake
 
@@ -445,8 +434,6 @@ lemma handshake_1 (r : A → B → Prop)
 
 end handshake
 
-
-
 lemma odd_of_boundary_faces SC {n1} {hn1 : n1 + 1 = SC.n}:
     Odd (Finset.card { I : Fin (n1 + 1) → SC.G | complete_boundary_face SC I})
     → Odd (Finset.card { I | complete_simplex SC SC.n I}) := by {
@@ -462,12 +449,10 @@ lemma odd_of_boundary_faces SC {n1} {hn1 : n1 + 1 = SC.n}:
   exact fun _ _ h1 ↦ h1.2.1
 }
 
-
 section induction_step
 
 variable (SC : SpernerCube)
 variable {n1 : ℕ}
-
 
 def child_map (v : Fin n1 → Fin (SC.p+1) ) : SC.G := fun i ↦
   match n1 with
@@ -593,9 +578,7 @@ def child_cube {hn1 : n1 + 1 = SC.n}: SpernerCube where
     exact hn1
   }
 
-
 end induction_step
-
 
 lemma induction_start (SC : SpernerCube) (h0 : 0 = SC.n)
     : Odd (Finset.card { I | complete_simplex SC SC.n I}) := by {

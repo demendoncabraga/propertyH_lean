@@ -10,7 +10,6 @@ import Mathlib.Tactic
 noncomputable section
 open Classical
 
-
 /-
 The Cubical Sperner's Lemma.
 We mostly follow Kuhn 1960 "Some Combinatorial Lemmas in Topology"
@@ -37,7 +36,6 @@ variable (SC : SpernerCube)
 variable {n1 : ℕ}
 variable {hn1 : n1 + 1 = SC.n}
 
-
 def simplex (m:ℕ ) (I : Fin (m+1)→ SC.G) := Function.Injective I
     ∧ ∀ i < m, ∀ j : Fin SC.n, (I (Fin.ofNat _ i) j).1 ≤ (I (Fin.ofNat _ (i+1)) j).1
     ∧ (I (Fin.last m) j).1 ≤ (I 0 j).1 + 1
@@ -60,7 +58,6 @@ def case_C (I : Fin (n1 +1) → SC.G) :=
     ∃ j, ∃ (q : Fin (SC.p + 1)), (q ≠ 0 ∧ q ≠ Fin.last SC.p ) ∧ ∀ k, I k j = q
 
 def case_D (I : Fin (n1 +1) → SC.G) := ∀ j, ∀ q, ∃ k,I k j ≠ q
-
 
 lemma one_of_ABCD (I : Fin (n1 +1) → SC.G) :
     case_A SC I ∨ case_B SC I ∨ case_C SC I ∨ case_D SC I := by {
@@ -88,9 +85,7 @@ lemma one_of_ABCD (I : Fin (n1 +1) → SC.G) :
   use j, q
 }
 
-
 section simplex_properties
-
 
 lemma monotone_1_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m I) (i1 i2 : Fin (m+1))
     (h1 : i1 ≤ i2) : ∀ j, I i1 j ≤ I i2 j := by {
@@ -146,7 +141,6 @@ lemma le_add_one_of_simplex {m: ℕ} I (hs : simplex SC m I) (i1 i2 : Fin (m+1))
 
 end simplex_properties
 
-
 lemma p_ne_zero_of_cube {hn1 : n1 + 1 = SC.n}: Fin.last SC.p ≠ 0 := by {
   simp only [ne_eq, Fin.last_eq_zero_iff]
   intro h1
@@ -161,9 +155,7 @@ lemma p_ne_zero_of_cube {hn1 : n1 + 1 = SC.n}: Fin.last SC.p ≠ 0 := by {
   exact h2.1 h4 (h2.2 h4)
 }
 
-
 section simplex_child
-
 
 def insert_index (j : Fin (SC.n+1)) (a: Fin (n1 +1 )) : Fin (SC.n+1) :=
 { val := if a.val < j.val then a.val else a.val+1,
@@ -275,7 +267,6 @@ lemma insert_index_inj j : Function.Injective (@insert_index SC n1 hn1 j) := by 
   apply StrictMono.injective
   apply insert_index_strict_mono
 }
-
 
 lemma delete_vertex_inj J {hs : simplex SC SC.n J} i1 i2
     (h1 : @delete_vertex SC n1 hn1 i1 J = @delete_vertex SC n1 hn1 i2 J ) : i1 = i2 := by {
@@ -445,7 +436,6 @@ lemma child_simplex_char (I : Fin (n1 +1) → SC.G) J {hs : simplex SC SC.n J}
 }
 
 end simplex_child
-
 
 section cases_ABCD
 
@@ -791,7 +781,6 @@ lemma parent_simplex_case_D I (hs : simplex SC n1 I) J j i
   }
 }
 
-
 def coord_change_count (v1 v2 : SC.G) := Finset.card {i | v1 i ≠ v2 i}
 
 lemma ccc_add {m} I (hs : simplex SC m I) (i1 i2 i3) (h1 : i1 ≤ i2 ∧ i2 ≤ i3) :
@@ -869,8 +858,6 @@ lemma ccc_fun_is_insert_index I (hs : simplex SC n1 I) :
   apply is_insert_index_of_strict_mono
   apply ccc_fun_strict_mono SC I hs
 }
-
-
 
 lemma ccc_fun_case_D_iff {m} I (hs : simplex SC m I) :
     case_D SC I ↔ ccc_fun SC I (Fin.last m) = Fin.last SC.n := by {
@@ -1072,7 +1059,6 @@ lemma same_delete_index_eq_iff J1 J2 j
   rw [hi1]
   exact congrFun h1 i1
 }
-
 
 lemma case_D_parent_count {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) (h1 : case_D SC I )
     : Finset.card { J : Fin (SC.n + 1) → SC.G | is_face SC I J} = 2 := by {
@@ -1309,7 +1295,6 @@ lemma case_D_parent_count {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) (h1 : c
   }
 }
 
-
 lemma unique_const_ABC {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) k1 q1
     (h1 : ∀ i, I i k1 = q1): ∀ k2, k1 ≠ k2 → I 0 k2 ≠ I (Fin.last n1) k2 := by {
   intro k2 h3 h2
@@ -1340,7 +1325,6 @@ lemma unique_const_ABC {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) k1 q1
   rw [←hn1,add_le_add_iff_left] at h7
   simp only [Nat.not_ofNat_le_one] at h7
 }
-
 
 lemma case_AC_ex_unique I (hs : simplex SC n1 I) k1 q
     (hABC : ∀ i, I i k1 = q) (hAC : q ≠ Fin.last SC.p)
@@ -1427,7 +1411,6 @@ lemma case_B_not_last I (h1 : case_B SC I) J
   exact lt_add_one SC.p
 }
 
-
 lemma case_BC_ex_unique I (hs : simplex SC n1 I) k1 q
     (hABC : ∀ i, I i k1 = q) (hBC : q ≠ 0)
     : ∃! J, I = @delete_vertex SC n1 hn1 0 J ∧ is_face SC I J := by {
@@ -1508,8 +1491,6 @@ lemma case_A_not_zero I (h1 : case_A SC I) J
   rfl
 }
 
-
-
 lemma case_ABC_count_disj {hn1 : n1 + 1 = SC.n} I k1 q
     (hABC : ∀ i, I i k1 = q) : Finset.card { J | is_face SC I J}
     = Finset.card {J | I = @delete_vertex SC n1 hn1 0 J ∧ is_face SC I J}
@@ -1550,7 +1531,6 @@ lemma case_ABC_count_disj {hn1 : n1 + 1 = SC.n} I k1 q
   apply @delete_vertex_inj SC n1 hn1 J h2.2.2.1
   rw [←h2.1,←h3.1]
 }
-
 
 lemma case_C_parent_count {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) (h1 : case_C SC I )
     : Finset.card { J : Fin (SC.n + 1) → SC.G | is_face SC I J} = 2 := by {
@@ -1616,7 +1596,6 @@ lemma boundary_is_A_or_B {hn1 : n1 + 1 = SC.n} I (hbf : @is_boundary_face SC n1 
 lemma case_B_boundary {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I)
     (h1 : case_B SC I) : is_boundary_face SC I :=
   (Fintype.existsUnique_iff_card_one _).mpr (@case_B_parent_count SC n1 hn1 I hs h1)
-
 
 -- used in other file
 lemma parent_count {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) :

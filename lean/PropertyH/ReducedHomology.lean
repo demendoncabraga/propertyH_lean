@@ -62,21 +62,6 @@ theorem reducedHomologyMap_nullhomotopic (n : ℕ) {X Y : TopCat.{u}} (f : X ⟶
   obtain ⟨y, hy⟩ := h
   exact (reducedHomologyMap_homotopic n hy).trans (reducedHomologyMap_const n y)
 
-theorem reducedHomologyMap_id (n : ℕ) (X : TopCat.{u}) :
-    reducedHomologyMap n (𝟙 X) = LinearMap.id := by
-  ext x
-  change (((integralHomology n).map (𝟙 X)).hom) x = x
-  simp
-
-theorem reducedHomologyMap_comp (n : ℕ) {X Y Z : TopCat.{u}}
-    (f : X ⟶ Y) (g : Y ⟶ Z) :
-    reducedHomologyMap n (f ≫ g) =
-      (reducedHomologyMap n g).comp (reducedHomologyMap n f) := by
-  ext x
-  change (((integralHomology n).map (f ≫ g)).hom) x =
-    (((integralHomology n).map g).hom) ((((integralHomology n).map f).hom) x)
-  simp only [Functor.map_comp, ModuleCat.hom_comp, LinearMap.comp_apply]
-
 end
 end PropertyH
 

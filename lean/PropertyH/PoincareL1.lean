@@ -93,7 +93,6 @@ theorem norm_edge_sum_le_of_lipschitz {V X : Type*} [Fintype V]
   have hs := Finset.sum_le_sum (s := Finset.univ) (fun v _ => hrow v)
   simpa only [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_assoc] using hs
 
-
 /-- Source PIII: the L1-valued Poincare inequality with the manuscript constant. -/
 theorem expander_poincare_proved {V : Type*} [Fintype V] (G : SimpleGraph V)
     (k : ℕ) (h : ℝ) (hG : IsVertexExpander G k h) (hV : 5 ≤ Fintype.card V)

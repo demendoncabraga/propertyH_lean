@@ -30,41 +30,4 @@ theorem EquiUniformContinuous.reindex {X Y : ℕ → Type*}
   obtain ⟨δ, hδ, hfδ⟩ := hf ε hε
   exact ⟨δ, hδ, fun n x y hxy => hfδ (r n) x y hxy⟩
 
-/-- Isometric changes of domain preserve a common uniform-continuity modulus. -/
-theorem EquiUniformContinuous.comp_isometries {X Y Z : ℕ → Type*}
-    [∀ n, PseudoMetricSpace (X n)] [∀ n, PseudoMetricSpace (Y n)]
-    [∀ n, PseudoMetricSpace (Z n)] {f : ∀ n, X n → Y n}
-    (hf : EquiUniformContinuous f) (g : ∀ n, Z n → X n) (hg : ∀ n, Isometry (g n)) :
-    EquiUniformContinuous (fun n x => f n (g n x)) := by
-  intro ε hε
-  obtain ⟨δ, hδ, hfδ⟩ := hf ε hε
-  refine ⟨δ, hδ, fun n x y hxy => hfδ n (g n x) (g n y) ?_⟩
-  simpa only [(hg n).dist_eq] using hxy
-
-/-- Isometric changes of codomain preserve a common uniform-continuity modulus. -/
-theorem EquiUniformContinuous.isometries_comp {X Y Z : ℕ → Type*}
-    [∀ n, PseudoMetricSpace (X n)] [∀ n, PseudoMetricSpace (Y n)]
-    [∀ n, PseudoMetricSpace (Z n)] {f : ∀ n, X n → Y n}
-    (hf : EquiUniformContinuous f) (g : ∀ n, Y n → Z n) (hg : ∀ n, Isometry (g n)) :
-    EquiUniformContinuous (fun n x => g n (f n x)) := by
-  intro ε hε
-  obtain ⟨δ, hδ, hfδ⟩ := hf ε hε
-  refine ⟨δ, hδ, fun n x y hxy => ?_⟩
-  simpa only [(hg n).dist_eq] using hfδ n x y hxy
-
-/-- Restriction of a real linear isometry to unit spheres. -/
-def sphereLinearIsometry {X Y : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
-    [NormedAddCommGroup Y] [NormedSpace ℝ Y] (e : X →ₗᵢ[ℝ] Y) :
-    UnitSphere X → UnitSphere Y :=
-  fun x => ⟨e x, mem_sphere_zero_iff_norm.mpr
-    ((e.norm_map x).trans (mem_sphere_zero_iff_norm.mp x.property))⟩
-
-/-- The induced sphere map is isometric in the inherited metrics. -/
-theorem sphereLinearIsometry_isometry {X Y : Type*} [NormedAddCommGroup X]
-    [NormedSpace ℝ X] [NormedAddCommGroup Y] [NormedSpace ℝ Y] (e : X →ₗᵢ[ℝ] Y) :
-    Isometry (sphereLinearIsometry e) := by
-  apply Isometry.of_dist_eq
-  intro x y
-  exact e.isometry.dist_eq x y
-
 end PropertyH

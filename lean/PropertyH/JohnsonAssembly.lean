@@ -1,6 +1,6 @@
-import PropertyH.VaryingMain
-import PropertyH.FiniteSup
+import PropertyH.CoarseMain
 import PropertyH.GraphMetricSpace
+import PropertyH.SphereTopology
 
 noncomputable section
 namespace PropertyH
@@ -21,9 +21,9 @@ theorem no_equiUniform_sphere_homeomorphisms_of_sup_embeddings
   let f : ∀ n, C(UnitSphere (Fin (d n) → ℝ), UnitSphere (EuclideanSpace ℝ (Fin (d n)))) :=
     fun n => F (d n)
   have hmod : EquiUniformContinuous (fun n => f n) := hF.reindex d
-  have hnull := sphere_maps_eventually_nullhomotopic_varying E
+  have hnull := sphere_maps_eventually_nullhomotopic_coarse_varying E
     (fun n => Fin (d n) → ℝ) (fun n => EuclideanSpace ℝ (Fin (d n)))
-    (Ω := fun n => EuclideanSpace ℝ (Fin (d n))) μ j hE f hmod
+    (Ω := fun n => EuclideanSpace ℝ (Fin (d n))) μ j hE.to_coarse f hmod
   obtain ⟨n, hn⟩ := hnull.exists
   exact hsphere (d n) ((homeomorph_nullhomotopic_iff (F (d n))).mp hn)
 

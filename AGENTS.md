@@ -1,73 +1,35 @@
 # Repository guidelines
 
-## Current project
-
 The authoritative manuscript is `paper/main.tex`, *Expanders prevent Property (H)*.
-The Lean package is `propertyh`, its library and namespace are `PropertyH`, and its
-source directory is `lean/`. `lean/PropertyH.lean` imports all paper modules.
-`lean/PropertyH/Basic.lean` is the initial shared vocabulary module.
+Preserve it unless the author requests changes. The Lean library is `PropertyH`,
+under `lean/`, pinned to Lean/Mathlib v4.33.1.
 
-The current author-authorized scope is the entire mathematical proof modulo exactly
-Osajda. Read `docs/VERIFICATION_SCOPE.md` and
-`docs/SOURCE_COVERAGE_REVIEW.md`; run `sh scripts/audit.sh --terminal --modulo-external`
-for this scope. The older unconditional completion workflow remains a stricter gate.
-Do not resume proving the external Osajda construction unless the user changes this scope.
+Formalize the current real-scalar paper modulo exactly `OsajdaExpanderGroup`.
+Do not add external hypotheses, project axioms, proof placeholders, or silently
+weaken statements. Report mathematical ambiguities to the author. Do not resume
+Osajda's construction unless the author changes the scope.
 
-The repository contains the formalization. Consult `lean/coverage.json` and
-`lean/FORMALIZATION_LOG.md` for the actual current proof status. Preserve the manuscript unless the user
-requests changes. Flag false or materially ambiguous statements instead of silently
-changing hypotheses or conclusions to make them provable.
+The source tree should contain only current manuscript statements and their
+proof dependencies. Update `lean/coverage.json`, `docs/SOURCE_COVERAGE_REVIEW.md`
+and `docs/VERIFICATION_SCOPE.md` when the manuscript or statements change.
+`scripts/DependencyAudit.lean` lists the final manuscript roots; keep its list
+consistent with `paper_roots` in the inventory. Do not retain obsolete theorem
+versions or unused developments. Preserve vendored licenses and provenance.
 
-## Workflow
-
-- For complete formalization, read `prompts/FORMALIZE_PAPER.md`,
-  `prompts/RECURSIVE_FORMALIZATION.md`, `docs/GLOSSARY.md`, and the current log.
-- `lean/FORMALIZATION_LOG.md` records decisions, proof debt and progress.
-- `lean/coverage.json` records source claims and their actual Lean declarations.
-  Expand its initial inventory before marking it complete. Register all required
-  definitions, results and external proof dependencies, not just the main theorem.
-- The setup task does not itself authorize starting the full mathematical formalization.
-- Some reusable method examples describe historical projects. They are examples only;
-  no historical library or proof is present or assumed here.
-- `prompts/INIT.md` is a retired representation-test prompt and is not applicable.
-
-## Build and validation
-
-Run commands from the repository root:
+Validate from the repository root:
 
 ```sh
-sh scripts/setup.sh
-lake build
-sh scripts/audit.sh
-sh scripts/audit.sh --terminal
+python3 scripts/test_audit.py
+sh scripts/audit.sh --terminal --modulo-external
 ```
 
-The setup script installs the version manager if needed, obtains the pinned Lean
-toolchain and Mathlib cache, and builds the initial project. It requires network
-access, Git, curl and Python 3. Keep the existing dependency pins unless a change
-is explicitly justified; do not run an unrequested dependency upgrade.
+The terminal audit builds Lean, checks source-dependency closure and inventory,
+rejects placeholders/project axioms, and checks all registered axiom reports.
+Only `propext`, `Classical.choice` and `Quot.sound` are permitted foundational
+axioms. The unconditional gate deliberately rejects the explicit Osajda parameter.
+A passing audit does not replace a mathematical source-to-statement review.
 
-The ordinary audit permits explicitly tracked temporary proof debt but rejects
-project axiom declarations and unexpected foundational axioms. The terminal audit
-also requires a complete inventory, verified entries with actual declarations, no
-proof placeholders, and only `propext`, `Classical.choice`, and `Quot.sound` in the
-registered declarations' axiom reports. `lean/Audit.lean` is generated from the
-inventory by the audit script. The audit does not replace a source-to-statement review.
-
-To compile the manuscript, run `latexmk -pdf -interaction=nonstopmode
--halt-on-error main.tex` from `paper/`, when a suitable TeX installation is available.
-If the manuscript is edited, inspect the resulting PDF and resolve broken references.
-
-## Editing conventions
-
-Use the manuscript's existing notation in provenance comments. Prefer two-space
-indentation in Lean. Keep shared definitions in `Basic.lean` or coherent dedicated
-modules. Import all mathematical modules through the root library. Preserve unrelated
-user work. Do not commit generated build caches or LaTeX auxiliary files.
-
-The standard trusted base is Lean and the pinned Mathlib. Never add project axioms
-or silently weaken statements. A passing empty build is not evidence that a paper
-result is formalized. Report verification limits accurately.
-
-When Git is available, keep commits focused and report the actual build and audit
-results. A ZIP export need not include a Git repository.
+Keep dependency pins unchanged. Use two-space indentation in Lean and focused
+commits. Do not commit build caches or LaTeX auxiliary files. Preserve unrelated
+user work. The current verification record is `lean/FORMALIZATION_LOG.md`;
+historical development is available in Git history.

@@ -1,8 +1,7 @@
-import PropertyH.HilbertL1
+import PropertyH.DegreeBound
 import PropertyH.MainProof
-import PropertyH.PropertyH
-import PropertyH.FiniteApproximation
-import PropertyH.SphereTopology
+import PropertyH.RadialUniform
+import PropertyH.SmallDeviation
 noncomputable section
 namespace PropertyH
 open Filter MeasureTheory
@@ -50,6 +49,5 @@ theorem sphere_maps_eventually_nullhomotopic_of_normalized
       hedge (hmod n) t x
     simpa only [show (2 * (E.degreeBound : ℝ) / E.expansion) = c from rfl,
       mul_div_cancel₀ ε hc.ne'] using hp
-
 
 end PropertyH

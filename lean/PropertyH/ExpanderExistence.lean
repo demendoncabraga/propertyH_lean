@@ -1,6 +1,6 @@
-import PropertyH.PermutationExpanders
-import PropertyH.PermutationCount
 import PropertyH.ExpanderNumerics
+import PropertyH.PermutationCount
+import PropertyH.PermutationExpanders
 
 noncomputable section
 namespace PropertyH.PermutationExpanders

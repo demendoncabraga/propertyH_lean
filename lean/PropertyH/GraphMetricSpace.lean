@@ -1,6 +1,6 @@
-import PropertyH.FiniteSup
-import PropertyH.Connectivity
 import PropertyH.CZero
+import PropertyH.Connectivity
+import PropertyH.FiniteSup
 noncomputable section
 namespace PropertyH
 
@@ -31,9 +31,10 @@ theorem expander_sup_embeddings (E : ExpanderFamily) :
   choose f hf using hf
   exact ⟨1, le_rfl, f, fun n v w => by simp [hf]⟩
 /-- Every expander family embeds into c₀; existence of such a family is separate. -/
-theorem containsExpanders_cZero (E : ExpanderFamily) : ContainsExpanders CZero := by
+theorem expander_cZero_embeddings (E : ExpanderFamily) :
+    EquiGraphEmbeddings E (fun _ => CZero) := by
   obtain ⟨L, hL, φ, hφ⟩ := expander_sup_embeddings E
-  refine ⟨E, L, hL, fun n v => finiteToCZero _ (φ n v), ?_⟩
+  refine ⟨L, hL, fun n v => finiteToCZero _ (φ n v), ?_⟩
   intro n v u
   simpa only [← dist_eq_norm, (finiteToCZero_isometry _).dist_eq] using hφ n v u
 end PropertyH

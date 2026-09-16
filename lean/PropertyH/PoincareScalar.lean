@@ -1,5 +1,5 @@
-import PropertyH.Expanders
 import PropertyH.Averages
+import PropertyH.Expanders
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 noncomputable section

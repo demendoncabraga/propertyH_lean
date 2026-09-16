@@ -1,3 +1,4 @@
+import PropertyH.SphereFixedPoint
 import PropertyH.SphereNoncontractible
 namespace PropertyH
 

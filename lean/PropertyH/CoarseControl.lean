@@ -41,23 +41,4 @@ theorem StandardCoarselyContainsAllFinitelyGeneratedGroups.to_linear_control
   intro g h
   exact ⟨(hf g h).1, norm_sub_le_linear_graph_control hc f ω (fun a b => (hf a b).2) g h⟩
 
-theorem CoarselyContainsAllFinitelyGeneratedGroups.to_standard
-    {X : Type*} [NormedAddCommGroup X]
-    (hX : CoarselyContainsAllFinitelyGeneratedGroups X) :
-    StandardCoarselyContainsAllFinitelyGeneratedGroups X := by
-  intro Γ _ _ S hc
-  obtain ⟨f, L, ρ, hL, hρ, hρ0, hρproper, hf⟩ := hX Γ S hc
-  refine ⟨f, ρ, fun t => L * t, hρ, hρ0, hρproper, ?_, ?_, hf⟩
-  · exact fun a b hab => mul_le_mul_of_nonneg_left hab hL.le
-  · exact fun t ht => mul_nonneg hL.le ht
-
-/-- Taking linear upper control on Cayley graphs does not strengthen the paper's
-coarse-copy hypothesis. -/
-theorem standardCoarselyContainsAllFinitelyGeneratedGroups_iff
-    (X : Type*) [NormedAddCommGroup X] :
-    StandardCoarselyContainsAllFinitelyGeneratedGroups X ↔
-      CoarselyContainsAllFinitelyGeneratedGroups X :=
-  ⟨StandardCoarselyContainsAllFinitelyGeneratedGroups.to_linear_control,
-    CoarselyContainsAllFinitelyGeneratedGroups.to_standard⟩
-
 end PropertyH

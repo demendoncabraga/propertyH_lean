@@ -1,4 +1,4 @@
-import PropertyH.DegreeBound
+import Mathlib
 import Mathlib.Data.Set.Card.Arithmetic
 
 namespace PropertyH
@@ -60,52 +60,5 @@ lemma card_dist_le_bound {V : Type*} [Fintype V] {G : SimpleGraph V}
         simpa only [Finset.sum_const, Finset.card_univ, smul_eq_mul, Set.fintypeCard_eq_ncard,
           pow_succ, Nat.mul_comm, Nat.add_comm] using
           Nat.add_le_add_right (Nat.mul_le_mul_right (k ^ n) (hdeg u)) 1
-
-/-- At least half the vertices lie beyond the logarithmic distance threshold. -/
-lemma sum_dist_lower_bound {V : Type*} [Fintype V] {G : SimpleGraph V}
-    (hc : G.Connected) {k : ℕ} (hk : 2 ≤ k)
-    (hdeg : ∀ v, (G.neighborSet v).ncard ≤ k) (hV : 5 ≤ Fintype.card V) (u : V) :
-    (Fintype.card V : ℝ) / 2 * Real.logb k ((Fintype.card V : ℝ) / 2 - 1) ≤
-      ∑ w, (G.dist u w : ℝ) := by
-  classical
-  let N : ℝ := Fintype.card V
-  let t : ℝ := Real.logb k (N / 2 - 1)
-  have hN : 5 ≤ N := by dsimp [N]; exact_mod_cast hV
-  have hkR : 1 < (k : ℝ) := by exact_mod_cast (show 1 < k by omega)
-  have ht : 0 ≤ t := Real.logb_nonneg hkR (by dsimp [N] at *; linarith)
-  have hpow : ((k ^ ⌊t⌋₊ : ℕ) : ℝ) ≤ N / 2 - 1 := by
-    simpa only [Nat.cast_pow, Real.rpow_natCast] using
-      (Real.le_logb_iff_rpow_le hkR (by linarith : 0 < N / 2 - 1)).mp (Nat.floor_le ht)
-  let A : Finset V := Finset.univ.filter (fun w => G.dist u w ≤ ⌊t⌋₊)
-  have hAc : A.card ≤ 1 + k ^ ⌊t⌋₊ := by
-    simpa [A, Set.ncard_eq_toFinset_card'] using card_dist_le_bound hc hdeg u ⌊t⌋₊
-  have hAcR : (A.card : ℝ) ≤ N / 2 := by
-    have : (A.card : ℝ) ≤ 1 + ((k ^ ⌊t⌋₊ : ℕ) : ℝ) := by exact_mod_cast hAc
-    linarith
-  have hBcR : N / 2 ≤ (Aᶜ.card : ℝ) := by
-    have : (A.card : ℝ) + (Aᶜ.card : ℝ) = N := by
-      dsimp [N]
-      exact_mod_cast Finset.card_add_card_compl A
-    linarith
-  have hfar : ∀ w ∈ Aᶜ, t ≤ (G.dist u w : ℝ) := by
-    intro w hw
-    have hw' : ⌊t⌋₊ < G.dist u w := by simpa [A] using hw
-    exact (Nat.lt_of_floor_lt hw').le
-  calc
-    N / 2 * t ≤ (Aᶜ.card : ℝ) * t := mul_le_mul_of_nonneg_right hBcR ht
-    _ = ∑ _w ∈ Aᶜ, t := by simp
-    _ ≤ ∑ w ∈ Aᶜ, (G.dist u w : ℝ) := Finset.sum_le_sum hfar
-    _ ≤ ∑ w, (G.dist u w : ℝ) :=
-      Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ _) (by intros; positivity)
-
-/-- Source: PII. Sum the logarithmic distance lower bound over all centers. -/
-theorem expander_pairwise_distance_bound_proved {V : Type*} [Fintype V] (G : SimpleGraph V)
-    (k : ℕ) (h : ℝ) (hG : IsVertexExpander G k h) (hV : 5 ≤ Fintype.card V) :
-    (Fintype.card V : ℝ)^2 / 2 * Real.logb k ((Fintype.card V : ℝ) / 2 - 1) ≤
-      ∑ v, ∑ u, ((G.dist v u : ℕ) : ℝ) := by
-  have : Nonempty V := Fintype.card_pos_iff.mp (by omega)
-  have hsum := Finset.sum_le_sum (s := Finset.univ)
-    (fun v _ => sum_dist_lower_bound hG.connected (hG.two_le_degreeBound hV) hG.2.1 hV v)
-  simpa [Finset.sum_const, nsmul_eq_mul, pow_two, mul_div_assoc, mul_assoc] using hsum
 
 end PropertyH

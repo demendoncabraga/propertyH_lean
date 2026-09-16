@@ -1,4 +1,3 @@
-import PropertyH.Basic
 import PropertyH.NullHomotopy
 noncomputable section
 open Classical

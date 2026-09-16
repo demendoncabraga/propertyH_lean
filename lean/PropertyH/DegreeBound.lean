@@ -2,7 +2,7 @@ import PropertyH.Connectivity
 
 namespace PropertyH
 
-/-- Source: PII requires logarithmic base k > 1; expansion and |V| ≥ 5 force k ≥ 2. -/
+/-- Expansion and at least five vertices force the degree bound to be at least two. -/
 theorem IsVertexExpander.two_le_degreeBound {V : Type*} [Fintype V]
     {G : SimpleGraph V} {k : ℕ} {h : ℝ} (hex : IsVertexExpander G k h)
     (hcard : 5 ≤ Fintype.card V) : 2 ≤ k := by

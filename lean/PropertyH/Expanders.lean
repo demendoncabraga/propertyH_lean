@@ -26,16 +26,12 @@ structure ExpanderFamily where
 
 attribute [instance] ExpanderFamily.fintype
 
-/-- Source: `Eq.Lip.Con`:
+/-- Uniform biLipschitz bounds used for the finite metric constructions:
 `$d_n(v,u)/L \le \|\varphi_n(v)-\varphi_n(u)\| \le Ld_n(v,u)$`, `$L\ge1$`. -/
 def EquiGraphEmbeddings (E : ExpanderFamily) (X : ℕ → Type*)
     [∀ n, NormedAddCommGroup (X n)] : Prop :=
   ∃ L : ℝ, 1 ≤ L ∧ ∃ φ : ∀ n, E.V n → X n,
     ∀ n v u, (E.graph n).dist v u / L ≤ ‖φ n v - φ n u‖ ∧
       ‖φ n v - φ n u‖ ≤ L * (E.graph n).dist v u
-
-/-- Source: a Banach space contains equi-biLipschitz copies of an expander sequence. -/
-def ContainsExpanders (X : Type*) [NormedAddCommGroup X] : Prop :=
-  ∃ E : ExpanderFamily, EquiGraphEmbeddings E (fun _ => X)
 
 end PropertyH

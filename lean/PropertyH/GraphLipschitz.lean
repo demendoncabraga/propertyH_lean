@@ -1,4 +1,4 @@
-import PropertyH.Expanders
+import PropertyH.Basic
 
 namespace PropertyH
 variable {V Y : Type*} {G : SimpleGraph V} [PseudoMetricSpace Y]

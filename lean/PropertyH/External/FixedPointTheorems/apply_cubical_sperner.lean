@@ -1,12 +1,11 @@
+import PropertyH.External.FixedPointTheorems.cubical_sperner
 /-
 Copyright (c) 2026 harfe. Distributed under the MIT license; see LICENSE.
 Adapted from upstream commit 770940ddf9878cf61952ed53d910b92bca841838.
 -/
 
-
 import Mathlib.Analysis.Convex.Intrinsic
 import Mathlib.Topology.Defs.Basic
-import PropertyH.External.FixedPointTheorems.cubical_sperner
 
 open Classical
 
@@ -14,7 +13,6 @@ open Classical
 shows the fixed-point theorem for the unit cube
 by applying the cubical sperner's lemma
 -/
-
 
 variable {n : ℕ}
 
@@ -232,7 +230,6 @@ lemma nearby_points (f : @unit_cube n → @unit_cube n) (p0:ℕ):
   exact ⟨h5 i0 ik k, h5 ik i0 k⟩
 }
 
-
 theorem fixed_point_unit_cube (f : C(@unit_cube n, @unit_cube n)) : ∃ x, f x = x := by {
   obtain ⟨x0s, hx0⟩ := axiomOfChoice (nearby_points f)
   have hc1 : ∃ xx : @unit_cube n, ∃ (φ:ℕ → ℕ ), StrictMono φ ∧
@@ -284,8 +281,3 @@ theorem fixed_point_unit_cube (f : C(@unit_cube n, @unit_cube n)) : ∃ x, f x =
   ext k
   apply le_antisymm (h4 k) (h3 k)
 }
-
-/-- The cubical fixed-point theorem stated with mathlib's `Function.IsFixedPt` vocabulary. -/
-theorem fixed_point_unit_cube_isFixedPt (f : C(@unit_cube n, @unit_cube n)) :
-    ∃ x, Function.IsFixedPt f x := by
-  simpa [Function.IsFixedPt] using fixed_point_unit_cube f
