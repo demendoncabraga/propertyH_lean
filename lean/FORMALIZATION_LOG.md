@@ -369,3 +369,28 @@ exactly D12 (OsajdaExpanderGroup) and modulo_MaureyPisierFiniteRepresentability,
 confirming that unconditional verification is not being claimed. The source
 checksum is unchanged. The requested mathematical-proof scope is complete modulo
 exactly the two explicit external hypotheses.
+
+
+## Manuscript revision: uniform finite sup-space containment (2026-09-16)
+
+The author replaced the trivial-cotype clause of Cor.Prop.H with uniform
+containment of finite-dimensional ℓ∞ spaces. Added UniformlyContainsFiniteSup,
+the finite-metric bridge, the resulting Property (H) obstruction, and the direct
+c₀ containment witness. The formal condition allows nonlinear embeddings and
+therefore also covers linear containment. The symmetric common bound uses the
+usual normalization by rescaling embeddings into a normed space.
+
+Removed the obsolete MaureyPisierFiniteRepresentability proposition and its five
+conditional consequences. Retained Rademacher cotype definitions and the independent
+c₀ cotype proof as legacy support, with corrected coverage provenance. Updated the
+source fingerprint, current scope documents and inventory. The modulo terminal
+gate now permits exactly Osajda, and regression tests explicitly reject adding
+Maurey–Pisier back, the former scope, and duplicate Osajda entries. The author's
+manuscript was preserved unchanged. Validation results follow after checking.
+
+Validation: full `lake build` passed; all eight audit regression tests passed;
+`sh scripts/audit.sh --terminal --modulo-external` passed with only standard
+foundational axioms in all registered declarations. The unconditional terminal
+gate rejects exactly D12 (Osajda), as intended. The revised corollary and the c₀
+containment witness have no external hypothesis. The source SHA256 in coverage
+and the source review matches the author's revised manuscript.

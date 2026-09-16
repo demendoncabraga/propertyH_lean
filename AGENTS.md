@@ -8,10 +8,10 @@ source directory is `lean/`. `lean/PropertyH.lean` imports all paper modules.
 `lean/PropertyH/Basic.lean` is the initial shared vocabulary module.
 
 The current author-authorized scope is the entire mathematical proof modulo exactly
-Maurey–Pisier and Osajda. Read `docs/VERIFICATION_SCOPE.md` and
+Osajda. Read `docs/VERIFICATION_SCOPE.md` and
 `docs/SOURCE_COVERAGE_REVIEW.md`; run `sh scripts/audit.sh --terminal --modulo-external`
 for this scope. The older unconditional completion workflow remains a stricter gate.
-Do not resume proving the two external constructions unless the user changes this scope.
+Do not resume proving the external Osajda construction unless the user changes this scope.
 
 The repository contains the formalization. Consult `lean/coverage.json` and
 `lean/FORMALIZATION_LOG.md` for the actual current proof status. Preserve the manuscript unless the user

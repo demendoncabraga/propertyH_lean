@@ -1,13 +1,14 @@
 # Verification scope
 
-The agreed scope is the revised real-scalar paper **modulo Maurey–Pisier and Osajda**, as explicitly requested by the author. Every numbered result and its mathematical proof dependencies is checked in Lean relative to the two hypotheses below. The detailed source review is in [SOURCE_COVERAGE_REVIEW.md](SOURCE_COVERAGE_REVIEW.md).
+The scope is the current real-scalar paper **modulo Osajda only**. Every numbered result and its mathematical proof dependencies is checked in Lean relative to the single external hypothesis below. The detailed source review is in [SOURCE_COVERAGE_REVIEW.md](SOURCE_COVERAGE_REVIEW.md).
 
-## The two external hypotheses
+## The external hypothesis
 
-- `MaureyPisierFiniteRepresentability X`: if `X` has trivial Rademacher cotype, each finite-dimensional real sup space has a linear embedding into `X` with lower norm bound one and upper bound `1 + ε`, for every positive `ε`.
-- `OsajdaExpanderGroup`: a countable finitely generated group has a Cayley graph containing one expander sequence isometrically.
+`OsajdaExpanderGroup`: a countable finitely generated group has a Cayley graph containing one expander sequence isometrically.
 
-These are ordinary propositions passed as explicit theorem parameters. They are **not project axioms or `sorry` proofs**. The trivial-cotype corollary takes `hMP`; the group-universality corollary takes `hOsajda`. Their actual parameter lists are the authoritative statements. The main theorem, normalization lemma, coarse expander obstruction, Johnson conclusion, c₀ conclusion and c₀ trivial-cotype proof require neither external hypothesis.
+This is an ordinary proposition passed as an explicit parameter (`hOsajda`) to the group-universality corollary, not a project axiom or a proof placeholder. The main theorem, normalization lemma, coarse expander obstruction, uniform finite sup-space containment corollary, Johnson conclusion and c₀ conclusion require no external hypothesis.
+
+The revised `Cor.Prop.H` assumes uniform distortion containment of finite-dimensional ℓ∞ spaces directly. `UniformlyContainsFiniteSup` expresses this by maps with a common symmetric biLipschitz bound after rescaling. The maps need not be linear, so the formal result also covers linear containment. Finite metric distance coordinates give the implication to expander containment, and zero extension verifies the c₀ example. No cotype characterization or Maurey–Pisier result is used. The obsolete Maurey–Pisier hypothesis and its conditional consequences have been removed; the independently proved c₀ cotype fact remains legacy support.
 
 The internal high-girth, labeling and no-shortening steps of Osajda's construction are outside this agreed scope. Earlier verified supporting lemmas are retained, and the unfinished construction details are archived in `coverage.json` under `excluded_external_proof_details`; they are not additional external assumptions.
 
@@ -27,8 +28,8 @@ python3 scripts/test_audit.py
 sh scripts/audit.sh --terminal --modulo-external
 ```
 
-The modulo terminal gate requires a complete inventory, every non-external entry verified, exactly the two named external propositions, no proof placeholders, no project axioms, and only `propext`, `Classical.choice`, and `Quot.sound` in every registered declaration's axiom report. The six audit regression tests ensure the scope gate rejects extra or substituted assumptions, incomplete coverage and unverified entries.
+The modulo terminal gate requires a complete inventory, every non-external entry verified, exactly the named Osajda proposition, no proof placeholders, no project axioms, and only `propext`, `Classical.choice`, and `Quot.sound` in every registered declaration's axiom report. The eight audit regression tests ensure the scope gate rejects extra or substituted assumptions, incomplete coverage and unverified entries.
 
-`sh scripts/audit.sh --terminal` without the scope flag deliberately rejects the two external assumptions: it is the stronger, unconditional completion gate. The successful modulo audit does not prove Maurey–Pisier or Osajda themselves.
+`sh scripts/audit.sh --terminal` without the scope flag deliberately rejects the Osajda assumption: it is the stronger, unconditional completion gate. The successful modulo audit does not prove Osajda itself.
 
 Contextual literature citations and historical discussion are documented in the source review. They are not hypotheses used in this paper's proofs, and their full theorems are not claimed to have been re-proved here.

@@ -1,6 +1,6 @@
 # Source coverage review
 
-Authoritative source: `paper/main.tex`, SHA256 `d6f25cf20ff8add31d74630ca7d9725699476287f12f6431a55f883b18b323f8`.
+Authoritative source: `paper/main.tex`, SHA256 `01a562684f5bbbf9ee64554ae891212cbfe0a8124d367a0e53a4c9abea760ac9`.
 Reviewed 2026-09-16 against the current Lean statements and proofs. The manuscript was not edited. This is the source-to-statement review; the mechanical audit separately checks builds and axiom dependencies.
 
 ## Every numbered result
@@ -9,7 +9,8 @@ Reviewed 2026-09-16 against the current Lean statements and proofs. The manuscri
 | --- | --- | --- |
 | `Thm.main` | `sphere_maps_eventually_nullhomotopic_coarse` | None |
 | `Cor.Prop.H`, coarse obstruction | `not_hasPropertyH_of_containsCoarseExpanders` | None |
-| `Cor.Prop.H`, trivial cotype | `not_hasPropertyH_of_hasTrivialCotype` | `MaureyPisierFiniteRepresentability X` |
+| `Cor.Prop.H`, uniform finite sup-space containment | `not_hasPropertyH_of_uniformlyContainsFiniteSup` | None |
+| `Cor.Prop.H`, c₀ example | `uniformlyContainsFiniteSup_cZero`, `not_hasPropertyH_cZero` | None |
 | `Cor.no.PropH.cL.universal` | `not_standard_coarsely_universal_groups_of_hasPropertyH` | `OsajdaExpanderGroup` |
 | `Corollary.Johnson` | `no_equiUniform_sphere_homeomorphisms` | None |
 | `Lemma`, `Eq.prop.psi` | `exists_coarse_normalization` | None |
@@ -27,10 +28,10 @@ The main theorem has the actual common coarse compression and common upper contr
 - Radial extensions, common moduli on radius-two balls, continuity of the averaging homotopy, Poincaré deviation bounds, nonvanishing and the boundary homotopy are covered by `RadialExtension`, `RadialUniform`, `CommonModulus`, `AveragingFamily`, `MainProof`, `SmallDeviation`, `BoundaryHomotopy` and `NormalizedMain`.
 - The Property (H) corollary uses checked finite-paving approximation (`CoarsePaving`), uniform restrictions (`VaryingMain`), Gaussian linear isometries into L₁ (`HilbertL1`) and the degree-one obstruction.
 - `HilbertReduction`, `DegreeTransport` and `HilbertPropertyH` prove separability of the source and target paving span, the arbitrary-Hilbert-to-ℓ₂ reduction preserving degree, and the dense-domain-to-full-sphere comparison. Thus the target comparison is closed.
-- Finite metrics embed isometrically in finite sup spaces (`FiniteSup`) and in c₀ (`CZero`). `not_hasPropertyH_cZero` is proved directly. `hasTrivialCotype_cZero` independently proves the parenthetical c₀ example by signed coordinate vectors.
-- `finite_metrics_near_isometric_of_hasTrivialCotype` proves the explanatory arbitrarily-close-to-one distortion claim, with the explicit Maurey–Pisier hypothesis. Trivial cotype is defined by absence of finite Rademacher cotype, not by metric universality.
+- Finite metrics embed isometrically in finite sup spaces (`FiniteSup`) and in c₀ (`CZero`). `not_hasPropertyH_cZero` is proved directly. `hasTrivialCotype_cZero` is retained as an independent legacy supporting result, not needed by the revised paper.
+- `UniformlyContainsFiniteSup` expresses uniform distortion containment of finite sup spaces using a common symmetric biLipschitz bound. `uniformlyContainsFiniteMetrics_of_uniformlyContainsFiniteSup` composes these embeddings with finite metric distance coordinates. `not_hasPropertyH_of_uniformlyContainsFiniteSup` then applies the expander obstruction. `uniformlyContainsFiniteSup_cZero` uses isometric zero extension. These results require no external hypothesis. The removed trivial-cotype assertion and near-isometric-distortion discussion are no longer source claims; their conditional Maurey–Pisier declarations have been removed.
 - `CoarseControl` proves equivalence of ordinary two-control-function coarse embeddings and linear upper control on Cayley graphs. The group corollary rules out universality already for finitely generated groups, which suffices to rule out universality for all countable groups. Controls may depend on the group and generating set.
-- Johnson's conclusion has checked finite metric coordinates, reindexing, expander existence (`PermutationExpanders.exists_expanderFamily`) and finite-sphere noncontractibility. The latter uses the retained licensed Brouwer proof port. None depends on the two external hypotheses.
+- Johnson's conclusion has checked finite metric coordinates, reindexing, expander existence (`PermutationExpanders.exists_expanderFamily`) and finite-sphere noncontractibility. The latter uses the retained licensed Brouwer proof port. None depends on the external Osajda hypothesis.
 
 ## Equivalent proof choices
 
@@ -42,4 +43,4 @@ All Banach and L₁ spaces are real, the established project convention. No comp
 
 The introduction's Novikov theorem, positive Property (H) examples from Odell–Schlumprecht and Cheng–Wang, the full Aharoni theorem, historical priority, status of open questions and AI-use discussion are contextual. None is a proof dependency here. The full contextual theorems are not claimed formalized; the needed finite-metric route is proved directly.
 
-Under this explicitly recorded mathematical-proof scope, every source result and required dependency is mapped to a checked declaration, with exactly Maurey–Pisier and Osajda supplied as hypotheses. Their constructions are not claimed verified. Exact declaration records, retained supporting lemmas and external assumptions are in `lean/coverage.json`.
+Under this explicitly recorded mathematical-proof scope, every source result and required dependency is mapped to a checked declaration, with exactly Osajda supplied as a hypothesis. Its construction is not claimed verified. Exact declaration records, retained supporting lemmas and external assumptions are in `lean/coverage.json`.

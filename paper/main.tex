@@ -54,6 +54,7 @@
 
 \newtheorem*{acknowledgements*}{Acknowledgements}
 \newtheorem*{disclaimer*}{Disclaimer on originality of the work}
+\newtheorem*{leanformalization*}{Lean formalization}
 \newtheorem*{AIusage}{AI usage statement}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem*{claim*}{Claim}
@@ -147,7 +148,7 @@ USA and Faculty of Electrical Engineering, Czech Technical University in Prague,
 \urladdr{\url{https://people.tamu.edu/~t-schlumprecht/}}
 \thanks{Th. Schlumprecht was partially supported by NSF Award DMS-2349322.}
 \begin{abstract}
-    We show that if a sequence of expander graphs equi-coarsely embeds into a Banach space, then this Banach space  fails Kasparov and Yu's Property (H).  
+    We show that if a sequence of expander graphs equi-coarsely embeds into a Banach space, then this Banach space  fails Kasparov and Yu's Property (H).  We provide a Lean verification of this statements.
 \end{abstract}
 
 \maketitle
@@ -173,10 +174,10 @@ for all $A\subseteq V$ with $|A|\leq |V|/2$. A \emph{sequence of expander graphs
 In light of Theorem \ref{Thm.main}, in order to rule out Property (H) for Banach spaces containing expanders, it is enough to remind the reader of the definition of this property. Indeed, a Banach space $X$ has \emph{Property (H)} if there are a uniformly continuous function $F\colon S_X\to S_{\ell_2}$ and increasing sequences of finite dimensional Banach spaces $(X_n)_n$ and $(H_n)_n$ of $X$ and of the Hilbert space $\ell_2$, respectively, such that $X=\overline{\bigcup_nX_n}$,  each $F(S_{X_n})\subseteq S_{H_n}$, and each $F_{\restriction S_{X_n}}\colon  S_{X_n}\to S_{H_n}$ is a degree one map.  As a degree one map between finite dimensional spheres is never null-homotopic, the following is an immediate consequence of Theorem \ref{Thm.main}.
 
 \begin{corollary}\label{Cor.Prop.H}
-If a sequence of expander graphs equi-coarsely embeds into a Banach space, then the Banach space  does not have Property (H). In particular, no Banach space with trivial cotype (such as $c_0$) has Property (H).\qed
+If a sequence of expander graphs equi-coarsely embeds into a Banach space, then the Banach space  does not have Property (H). In particular, if a Banach space contains the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion (such as $c_0$), then it cannot have Property (H).\qed
 \end{corollary}
 
-Notice that, while the first statement of Corollary \ref{Cor.Prop.H} follows from Theorem \ref{Thm.main}, the second is immediate from the well-known fact that  a Banach space with trivial cotype contains biLipschitzly  every finite metric space with distortion arbitrarily close to $1$ (any uniform bound on the distortion would suffice for the corollary). We remark that it is currently unknown if a Banach space with nontrivial cotype can equi-biLipschitzly contain a sequence of expander graphs.
+ We remark that it is currently unknown if a Banach space which does not  contain the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion  can equi-biLipschitzly contain a sequence of expander graphs.
 
 As there are finitely generated groups whose Cayley graphs contain expanders isometrically (see \cite[Theorem 4]{Osajda2020Acta}), the following corollary is also immediate.
 
@@ -353,6 +354,9 @@ By Proposition \ref{Prop.null.homotopy}, this shows that $f^n_1$ is null-homotop
 Theorem \ref{Thm.main} was obtained by  GPT-6 Astra with little input from the authors.   The organization and exposition of the paper are the authors' responsibility only. Moreover, all work done in collaboration with GPT-6 Astra  was independently checked and reworked by the authors,   who also take full responsibility for the correctness  and integrity of the work. 
 \end{AIusage}
 
+ \begin{leanformalization*}
+All  mathematical results of this paper were formalized using ChatGPT Astra in Lean 4 (version 4.33.1), using the Mathlib library. While all mathematics developed within  this paper was formalized, we  did not formalize   Osajda's result showing that there are finitely generated groups which contain isometric copies of expander graphs (\cite[Theorem 4]{Osajda2020Acta}). Consequently, Corollary \ref{Cor.no.PropH.cL.universal} is formalized modulo this result. 
+ \end{leanformalization*}
  
 \begin{disclaimer*}
 Other proofs of $c_0$ failing Property (H)
@@ -364,6 +368,7 @@ and of Corollary~\ref{Corollary.Johnson} appeared on arXiv on September 15th, 20
 American Institute of Mathematics (AIM) SQuaREs program as part of the
 ``Nonlinear geometry of Banach spaces''  SQuaRE project.
 \end{acknowledgements*}
+
 
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }

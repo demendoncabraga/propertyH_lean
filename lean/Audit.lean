@@ -351,10 +351,6 @@ import PropertyH
 #print axioms PropertyH.not_coarsely_universal_groups_of_hasPropertyH
 #print axioms PropertyH.HasRademacherCotype
 #print axioms PropertyH.HasTrivialCotype
-#print axioms PropertyH.maureyPisier_finite_sup_representability
-#print axioms PropertyH.uniformlyContainsFiniteMetrics_of_hasTrivialCotype
-#print axioms PropertyH.containsExpanders_of_hasTrivialCotype
-#print axioms PropertyH.not_hasPropertyH_of_hasTrivialCotype
 #print axioms PropertyH.integralHomology
 #print axioms PropertyH.collapse
 #print axioms PropertyH.reducedHomology
@@ -400,7 +396,9 @@ import PropertyH
 #print axioms PropertyH.hasPropertyH_of_hasPropertyHIn
 #print axioms PropertyH.HasPropertyHIn.separableSpace
 #print axioms PropertyH.HasPropertyH.separableSpace
-#print axioms PropertyH.MaureyPisierFiniteRepresentability
-#print axioms PropertyH.finite_metrics_near_isometric_of_hasTrivialCotype
 #print axioms PropertyH.exists_group_with_isometric_expanders
 #print axioms PropertyH.orthonormal_countable
+#print axioms PropertyH.UniformlyContainsFiniteSup
+#print axioms PropertyH.uniformlyContainsFiniteMetrics_of_uniformlyContainsFiniteSup
+#print axioms PropertyH.not_hasPropertyH_of_uniformlyContainsFiniteSup
+#print axioms PropertyH.uniformlyContainsFiniteSup_cZero

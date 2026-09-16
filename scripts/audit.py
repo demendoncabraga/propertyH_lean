@@ -59,13 +59,12 @@ def fail(message):
 
 
 EXTERNAL_ASSUMPTIONS = {
-    'PropertyH.MaureyPisierFiniteRepresentability',
     'PropertyH.OsajdaExpanderGroup',
 }
 
 
 def validate_terminal_scope(coverage, items, modulo_external=False):
-    """Require closed proof coverage, allowing only the two explicitly named hypotheses."""
+    """Require closed proof coverage, allowing only the explicitly named Osajda hypothesis."""
     permitted = {'verified', 'external_assumption'} if modulo_external else {'verified'}
     unfinished = [item['id'] for item in items if item['status'] not in permitted]
     if coverage.get('inventory_complete') is not True or unfinished or not items:
@@ -73,16 +72,16 @@ def validate_terminal_scope(coverage, items, modulo_external=False):
              'Open entries: ' + ', '.join(unfinished))
     if modulo_external:
         externals = [i.get('declaration') for i in items if i['status'] == 'external_assumption']
-        if len(externals) != 2 or set(externals) != EXTERNAL_ASSUMPTIONS:
-            fail('Modulo scope must name exactly Maurey–Pisier and Osajda, each once.')
-        if coverage.get('verification_scope') != 'modulo_maurey_pisier_and_osajda':
+        if len(externals) != 1 or set(externals) != EXTERNAL_ASSUMPTIONS:
+            fail('Modulo scope must name exactly Osajda, once.')
+        if coverage.get('verification_scope') != 'modulo_osajda':
             fail('Coverage does not declare the authorized modulo scope.')
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--terminal', action='store_true', help='require complete coverage and proofs')
     parser.add_argument('--modulo-external', action='store_true',
-                        help='with --terminal, allow exactly the explicit MP and Osajda hypotheses')
+                        help='with --terminal, allow only the explicit Osajda hypothesis')
     args = parser.parse_args()
     if args.modulo_external and not args.terminal:
         fail('--modulo-external requires --terminal.')
@@ -160,7 +159,7 @@ def main():
             fail('Unexpected axioms for ' + name + ': ' + ', '.join(sorted(unexpected)))
     if args.terminal:
         if args.modulo_external:
-            print('Terminal audit passed modulo explicit Maurey–Pisier and Osajda hypotheses. '
+            print('Terminal audit passed modulo the explicit Osajda hypothesis. '
                   'No proof placeholders or nonstandard axioms. Source review is recorded separately.')
         else:
             print('Terminal mechanical audit passed. Source-to-statement review is also required.')

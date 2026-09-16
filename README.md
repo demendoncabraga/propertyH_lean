@@ -1,20 +1,20 @@
 # Expanders prevent Property (H): Lean project
 
-The revised real-scalar manuscript in `paper/main.tex` is formalized **modulo
-Maurey–Pisier and Osajda**, the two external results explicitly authorized by the
-author. All numbered results and their proof dependencies are covered. The two
-results appear as explicit theorem hypotheses; there are no proof placeholders
-or project axioms.
+The current real-scalar manuscript in `paper/main.tex` is formalized **modulo
+Osajda**. All numbered results and their proof dependencies are covered. Osajda's
+result appears as an explicit hypothesis of the group-universality corollary;
+there are no proof placeholders or project axioms.
 
 The main theorem, coarse normalization, degree-one Property (H) obstruction,
-Johnson conclusion, c₀ conclusion and c₀ trivial-cotype proof need neither
-hypothesis. The trivial-cotype corollary takes a Maurey–Pisier hypothesis; the
-group-universality corollary takes an Osajda hypothesis. The arbitrary-Hilbert
-and dense-domain reductions to the manuscript's ℓ₂ definition are also proved.
+uniform finite sup-space containment corollary, Johnson conclusion and c₀
+conclusion require no external hypothesis. The revised manuscript assumes
+uniform containment of finite-dimensional ℓ∞ spaces directly, so Maurey–Pisier
+is no longer needed. The former conditional Maurey–Pisier deductions have been
+removed. The independent c₀ trivial-cotype proof is retained as legacy support.
 
-See [verification scope](docs/VERIFICATION_SCOPE.md) for the exact hypotheses,
+See [verification scope](docs/VERIFICATION_SCOPE.md) for the exact hypothesis,
 real-scalar and orientation conventions, and [source review](docs/SOURCE_COVERAGE_REVIEW.md)
-for the complete mathematical-proof coverage. Introductory contextual literature
+for the mathematical-proof coverage. Introductory contextual literature
 results are catalogued separately and are not claimed re-proved.
 
 Run the agreed completion gate:
@@ -26,7 +26,7 @@ sh scripts/audit.sh --terminal --modulo-external
 ```
 
 The unconditional `--terminal` gate without `--modulo-external` deliberately fails
-because Maurey–Pisier and Osajda are supplied hypotheses. Previous proofs and
+because Osajda is a supplied hypothesis. Previous proofs and
 legacy definitions are retained; no Lean or Mathlib pin was changed.
 
 ## Starting with a coding assistant

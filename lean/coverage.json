@@ -18,7 +18,7 @@
       "status": "verified",
       "declaration": "PropertyH.not_hasPropertyH_of_containsCoarseExpanders",
       "module": "PropertyH.CoarseMain",
-      "notes": "Verified for the new degree-one definition directly through reduced singular homology. Trivial-cotype assertion tracked separately."
+      "notes": "Verified degree-one obstruction. Uniform finite sup-space containment assertion tracked separately."
     },
     {
       "id": "R03",
@@ -150,7 +150,7 @@
       "description": "Explicit Osajda expander-group hypothesis",
       "status": "external_assumption",
       "declaration": "PropertyH.OsajdaExpanderGroup",
-      "notes": "One of exactly two externally supplied mathematical results; defined as a proposition, not asserted as an axiom.",
+      "notes": "The sole externally supplied mathematical result; a proposition parameter, not an asserted axiom.",
       "module": "PropertyH.OsajdaGroup"
     },
     {
@@ -3020,7 +3020,7 @@
     },
     {
       "id": "coarse_revision_HasRademacherCotype",
-      "source": "Cor.Prop.H",
+      "source": "Legacy supporting result; not required by the current manuscript",
       "description": "HasRademacherCotype",
       "status": "verified",
       "declaration": "PropertyH.HasRademacherCotype",
@@ -3028,59 +3028,11 @@
     },
     {
       "id": "coarse_revision_HasTrivialCotype",
-      "source": "Cor.Prop.H",
+      "source": "Legacy supporting result; not required by the current manuscript",
       "description": "HasTrivialCotype",
       "status": "verified",
       "declaration": "PropertyH.HasTrivialCotype",
       "module": "PropertyH.TrivialCotype"
-    },
-    {
-      "id": "coarse_revision_maureyPisier_finite_sup_representability",
-      "source": "Cor.Prop.H",
-      "description": "maureyPisier_finite_sup_representability",
-      "status": "verified",
-      "declaration": "PropertyH.maureyPisier_finite_sup_representability",
-      "module": "PropertyH.TrivialCotype",
-      "notes": "Kernel-checked conditional theorem with explicit MaureyPisierFiniteRepresentability X hypothesis; standard axioms only.",
-      "external_dependencies": [
-        "Maurey–Pisier"
-      ]
-    },
-    {
-      "id": "coarse_revision_uniformlyContainsFiniteMetrics_of_hasTrivialCotype",
-      "source": "Cor.Prop.H",
-      "description": "uniformlyContainsFiniteMetrics_of_hasTrivialCotype",
-      "status": "verified",
-      "declaration": "PropertyH.uniformlyContainsFiniteMetrics_of_hasTrivialCotype",
-      "module": "PropertyH.TrivialCotype",
-      "notes": "Kernel-checked conditional theorem with explicit MaureyPisierFiniteRepresentability X hypothesis; standard axioms only.",
-      "external_dependencies": [
-        "Maurey–Pisier"
-      ]
-    },
-    {
-      "id": "coarse_revision_containsExpanders_of_hasTrivialCotype",
-      "source": "Cor.Prop.H",
-      "description": "containsExpanders_of_hasTrivialCotype",
-      "status": "verified",
-      "declaration": "PropertyH.containsExpanders_of_hasTrivialCotype",
-      "module": "PropertyH.TrivialCotype",
-      "notes": "Kernel-checked conditional theorem with explicit MaureyPisierFiniteRepresentability X hypothesis; standard axioms only.",
-      "external_dependencies": [
-        "Maurey–Pisier"
-      ]
-    },
-    {
-      "id": "coarse_revision_not_hasPropertyH_of_hasTrivialCotype",
-      "source": "Cor.Prop.H",
-      "description": "not_hasPropertyH_of_hasTrivialCotype",
-      "status": "verified",
-      "declaration": "PropertyH.not_hasPropertyH_of_hasTrivialCotype",
-      "module": "PropertyH.TrivialCotype",
-      "notes": "Kernel-checked conditional theorem with explicit MaureyPisierFiniteRepresentability X hypothesis; standard axioms only.",
-      "external_dependencies": [
-        "Maurey–Pisier"
-      ]
     },
     {
       "id": "checked_ReducedHomology_integralHomology",
@@ -3324,7 +3276,7 @@
     },
     {
       "id": "checked_CZeroCotype_finiteToCZeroLinear",
-      "source": "Cor.Prop.H, parenthetical c0 trivial-cotype example",
+      "source": "Legacy supporting result; not required by the current manuscript",
       "description": "PropertyH.finiteToCZeroLinear",
       "status": "verified",
       "declaration": "PropertyH.finiteToCZeroLinear",
@@ -3332,7 +3284,7 @@
     },
     {
       "id": "checked_CZeroCotype_finiteToCZeroLinear_norm",
-      "source": "Cor.Prop.H, parenthetical c0 trivial-cotype example",
+      "source": "Legacy supporting result; not required by the current manuscript",
       "description": "PropertyH.finiteToCZeroLinear_norm",
       "status": "verified",
       "declaration": "PropertyH.finiteToCZeroLinear_norm",
@@ -3340,7 +3292,7 @@
     },
     {
       "id": "checked_CZeroCotype_cZero_sign_sum_le",
-      "source": "Cor.Prop.H, parenthetical c0 trivial-cotype example",
+      "source": "Legacy supporting result; not required by the current manuscript",
       "description": "PropertyH.cZero_sign_sum_le",
       "status": "verified",
       "declaration": "PropertyH.cZero_sign_sum_le",
@@ -3348,7 +3300,7 @@
     },
     {
       "id": "checked_CZeroCotype_cZero_sign_secondmoment_le",
-      "source": "Cor.Prop.H, parenthetical c0 trivial-cotype example",
+      "source": "Legacy supporting result; not required by the current manuscript",
       "description": "PropertyH.cZero_sign_secondmoment_le",
       "status": "verified",
       "declaration": "PropertyH.cZero_sign_secondmoment_le",
@@ -3356,7 +3308,7 @@
     },
     {
       "id": "checked_CZeroCotype_hasTrivialCotype_cZero",
-      "source": "Cor.Prop.H, parenthetical c0 trivial-cotype example",
+      "source": "Legacy supporting result; not required by the current manuscript",
       "description": "PropertyH.hasTrivialCotype_cZero",
       "status": "verified",
       "declaration": "PropertyH.hasTrivialCotype_cZero",
@@ -3471,26 +3423,6 @@
       "notes": "Kernel-checked conditional theorem with explicit OsajdaExpanderGroup hypothesis; standard axioms only."
     },
     {
-      "id": "modulo_MaureyPisierFiniteRepresentability",
-      "source": "Cor.Prop.H",
-      "description": "MaureyPisierFiniteRepresentability",
-      "status": "external_assumption",
-      "declaration": "PropertyH.MaureyPisierFiniteRepresentability",
-      "module": "PropertyH.TrivialCotype",
-      "notes": "The second explicitly supplied mathematical result; a proposition parameter, never an asserted project axiom."
-    },
-    {
-      "id": "modulo_finite_metrics_near_isometric_of_hasTrivialCotype",
-      "source": "Cor.Prop.H",
-      "description": "finite_metrics_near_isometric_of_hasTrivialCotype",
-      "status": "verified",
-      "declaration": "PropertyH.finite_metrics_near_isometric_of_hasTrivialCotype",
-      "module": "PropertyH.TrivialCotype",
-      "external_dependencies": [
-        "Maurey–Pisier"
-      ]
-    },
-    {
       "id": "modulo_exists_group_with_isometric_expanders",
       "source": "Cor.no.PropH.cL.universal",
       "description": "exists_group_with_isometric_expanders",
@@ -3508,9 +3440,45 @@
       "status": "verified",
       "declaration": "PropertyH.orthonormal_countable",
       "module": "PropertyH.HilbertReduction"
+    },
+    {
+      "id": "finite_sup_revision_UniformlyContainsFiniteSup",
+      "source": "Cor.Prop.H, second assertion and c₀ example",
+      "description": "Uniform distortion containment of all real finite sup spaces",
+      "status": "verified",
+      "declaration": "PropertyH.UniformlyContainsFiniteSup",
+      "module": "PropertyH.UniversalFinite",
+      "notes": "No external hypothesis."
+    },
+    {
+      "id": "finite_sup_revision_uniformlyContainsFiniteMetrics_of_uniformlyContainsFiniteSup",
+      "source": "Cor.Prop.H, second assertion and c₀ example",
+      "description": "Finite metric distance coordinates transfer sup-space containment",
+      "status": "verified",
+      "declaration": "PropertyH.uniformlyContainsFiniteMetrics_of_uniformlyContainsFiniteSup",
+      "module": "PropertyH.UniversalFinite",
+      "notes": "No external hypothesis."
+    },
+    {
+      "id": "finite_sup_revision_not_hasPropertyH_of_uniformlyContainsFiniteSup",
+      "source": "Cor.Prop.H, second assertion and c₀ example",
+      "description": "Uniform finite sup-space containment obstructs Property (H)",
+      "status": "verified",
+      "declaration": "PropertyH.not_hasPropertyH_of_uniformlyContainsFiniteSup",
+      "module": "PropertyH.UniversalFinite",
+      "notes": "No external hypothesis."
+    },
+    {
+      "id": "finite_sup_revision_uniformlyContainsFiniteSup_cZero",
+      "source": "Cor.Prop.H, second assertion and c₀ example",
+      "description": "c₀ contains all finite sup spaces isometrically",
+      "status": "verified",
+      "declaration": "PropertyH.uniformlyContainsFiniteSup_cZero",
+      "module": "PropertyH.UniversalFinite",
+      "notes": "No external hypothesis."
     }
   ],
-  "source_sha256": "d6f25cf20ff8add31d74630ca7d9725699476287f12f6431a55f883b18b323f8",
+  "source_sha256": "01a562684f5bbbf9ee64554ae891212cbfe0a8124d367a0e53a4c9abea760ac9",
   "excluded_external_proof_details": [
     {
       "id": "D32",
@@ -3538,7 +3506,7 @@
       "scope_note": "Internal to the Osajda construction explicitly excluded by the user; not an additional external assumption."
     }
   ],
-  "verification_scope": "modulo_maurey_pisier_and_osajda",
+  "verification_scope": "modulo_osajda",
   "coverage_review": "docs/SOURCE_COVERAGE_REVIEW.md",
   "scope_description": "All numbered results, substantive mathematical proof claims and proof dependencies of the revised real-scalar manuscript; contextual historical/literature claims are catalogued separately and are not re-proved.",
   "contextual_references_not_reproved": [
