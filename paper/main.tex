@@ -154,14 +154,88 @@ USA and Faculty of Electrical Engineering, Czech Technical University in Prague,
 \maketitle
 
 
-Kasparov and Yu have introduced in \cite{KasparovYu2012GeoTop} a property for Banach spaces called \emph{Property (H)} and showed that the Novikov conjecture holds for any countable group which coarsely embeds into a Banach space satisfying it (\cite[Theorem 1.2]{KasparovYu2012GeoTop}). While many examples of Banach spaces with Property (H) can be found by using Mazur's modified maps constructed by Odell and Schlumprecht in \cite{OdellSchlumprecht1994Acta} (e.g., this is the case for all separable Banach lattices with nontrivial cotype, see \cite[Theorem 1.1]{ChengWang2018JMAA}), there were no known examples of separable Banach spaces failing Property (H). In particular, it was open whether $c_0$ has Property (H); this was seen  as a special test case since $c_0$ is Lipschitz universal for all separable metric spaces (see \cite[Theorem on Page 288]{Aharoni1974Israel}). This short note shows that not only does $c_0$ not have Property (H), but in fact no Banach space containing expander graphs coarsely has Property (H). This is an immediate consequence of our main result, which reads  as follows (throughout, $S_X$ denotes the unit sphere of the Banach space $X$).
 
+% The Novikov conjecture, which asserts the homotopy invariance of the higher
+% signatures of closed oriented manifolds, is one of the central open problems
+% in topology, and much of the progress on it has been geometric in nature: by
+% a theorem of Yu, it holds for every countable group which coarsely embeds
+% into a Hilbert space (see \cite[Corollary 1.2]{Yu2000} and \cite[Theorem 6.1]{SkandalisTuYu2002Top}). Since Gromov's random groups
+% coarsely contain expander graphs and therefore admit no coarse embedding into
+% a Hilbert space (\cite[Section 4.8]{Gromov2003GAFA}), there has been a sustained effort to
+% replace the Hilbert space in Yu's theorem by larger Banach spaces. Kasparov
+% and Yu carried this out in \cite{KasparovYu2012GeoTop}, where they introduced
+% a property of Banach spaces called \emph{Property (H)} and showed that the
+% Novikov conjecture holds for any countable group which coarsely embeds into a
+% Banach space satisfying it (\cite[Theorem 1.2]{KasparovYu2012GeoTop}). This
+% raises the possibility of settling the Novikov conjecture in a single stroke.
+% Indeed, as every separable metric space is Lipschitz equivalent to a subset of
+% $c_0$ (\cite[Theorem on Page 288]{Aharoni1974Israel}), every countable group
+% coarsely embeds into $c_0$; so if $c_0$ were to have Property (H), the Novikov
+% conjecture would follow for all countable groups. Whether $c_0$ has Property
+% (H) was therefore seen as a special test case, and there was little evidence
+% either way: all known examples of Banach spaces with Property (H) come from
+% Mazur's modified maps constructed by Odell and Schlumprecht in
+% \cite{OdellSchlumprecht1994Acta} (e.g., this is the case for all separable
+% Banach lattices with nontrivial cotype, see
+% \cite[Theorem 1.1]{ChengWang2018JMAA}), while no separable Banach space was
+% known to fail it. This short note shows that $c_0$ does not have Property (H).
+% In fact, no Banach space which coarsely contains a sequence of expander graphs
+% has Property (H), and consequently no Banach space with Property (H) can serve
+% as a universal target in Kasparov and Yu's theorem: their approach cannot
+% yield the Novikov conjecture for all countable groups, and any group to which
+% it applies must fail to coarsely contain expanders. All of this is an
+% immediate consequence of our main result, which reads as follows (throughout,
+% $S_X$ denotes the unit sphere of the Banach space $X$).
 
+\section{Introduction}
 
+The Novikov conjecture, which asserts the homotopy invariance of the higher
+signatures of closed oriented manifolds, is one of the central open problems
+in topology, and much of the progress on it has been geometric in nature: by
+a theorem of Yu, it holds for every countable group which coarsely embeds
+into a Hilbert space (see \cite[Corollary 1.2]{Yu2000} and \cite[Theorem 6.1]{SkandalisTuYu2002Top}). After Gromov constructed random groups that admit no coarse embedding into
+a Hilbert space (\cite[Section 4.8]{Gromov2003GAFA}), there has been a sustained effort to
+replace the Hilbert space in Yu's theorem by larger class of Banach spaces. Kasparov
+and Yu carried this out in \cite{KasparovYu2012GeoTop}, where they introduced
+a property of Banach spaces called \emph{Property (H)} and showed that the
+Novikov conjecture holds for any countable group which coarsely embeds into a
+Banach space satisfying it (\cite[Theorem 1.2]{KasparovYu2012GeoTop}). We recall that a Banach space $X$ has Property (H) if there are a uniformly continuous function $F\colon S_X\to S_{\ell_2}$ and increasing sequences of finite dimensional Banach spaces $(X_n)_n$ and $(H_n)_n$ of $X$ and of the Hilbert space $\ell_2$, respectively, such that $X=\overline{\bigcup_nX_n}$, each $F(S_{X_n})\subseteq S_{H_n}$, and each $F_{\restriction S_{X_n}}\colon  S_{X_n}\to S_{H_n}$ is a degree one map. If the degree one condition is replaced by the weaker condition of having nonzero degree, then $X$ is said to have {\it rational Property (H)}. At present, all known examples of Banach spaces with Property (H) come from Mazur's modified maps constructed by Odell and Schlumprecht in \cite{OdellSchlumprecht1994Acta} (e.g., this is the case for all separable Banach lattices with nontrivial cotype, see \cite[Theorem 1.1]{ChengWang2018JMAA}).
+
+The theorem of Kasparov and Yu raises the possibility of settling the Novikov conjecture in a single stroke, reducing the problem to showing that every countable group admits a coarse embedding into a Property (H) space. The following theorem and corollaries show that this is impossible.
 
 \begin{theorem}\label{Thm.main}
-    Let $(X_n)_n$ and $(Y_n)_n$ be sequences of Banach spaces such that $Y_n\subseteq L_1$ for all $n\in\N$. Let $(G_n=(V_n,E_n))_n$ be a sequence of expander graphs and assume that there is a sequence of equi-coarse embeddings $(V_n\to X_n)_n$. Let $(F_n\colon S_{X_n}\to S_{Y_n})_n$ be a sequence of equi-uniformly continuous maps. Then, for $n\in\N$ large enough, the maps $F_n$ are all null-homotopic.
+Let $(X_n)_n$ and $(Y_n)_n$ be sequences of Banach spaces such that $Y_n\subseteq L_1$ for all $n\in\N$. Let $(G_n=(V_n,E_n))_n$ be a sequence of expander graphs, and assume that there is a sequence of equi-coarse embeddings $(V_n\to X_n)_n$. Let $(F_n\colon S_{X_n}\to S_{Y_n})_n$ be a sequence of equi-uniformly continuous maps. Then, for all sufficiently large $n\in\N$, the maps $F_n$ have degree zero.
 \end{theorem}
+
+\begin{corollary}\label{Cor.Prop.H}
+If a sequence of expander graphs equi-coarsely embeds into a Banach space, then the Banach space does not have Property (H) (or even rational Property (H)). In particular, if a Banach space contains the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion (such as $c_0$), then it cannot have Property (H).
+\end{corollary}
+
+\begin{proof}
+This follows from Theorem~\ref{Thm.main} and the fact that finite dimensional Hilbert spaces are isometrically contained in $L_1$.
+\end{proof}
+
+We remark that another recent work \cite{ChengChengWang} contains a proof that $c_0$ does not have rational Property (H), see \S\ref{disclaimer} below. We also note that it is currently unknown if a Banach space which does not contain the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion can equi-coarsely contain a sequence of expander graphs.
+
+\begin{corollary}\label{Cor.Group}
+There exists a finitely generated group that does not coarsely embed into any Banach space with Property (H).
+\end{corollary}
+
+\begin{proof}
+This follows from Corollary~\ref{Cor.Prop.H} the fact that there exists a finitely generated group containing a sequence of expander graphs isometrically \cite{Osajda2020Acta}.
+\end{proof}
+
+
+% \iffalse
+
+% Kasparov and Yu have introduced in \cite{KasparovYu2012GeoTop} a property for Banach spaces called \emph{Property (H)} and showed that the Novikov conjecture holds for any countable group which coarsely embeds into a Banach space satisfying it (\cite[Theorem 1.2]{KasparovYu2012GeoTop}). While many examples of Banach spaces with Property (H) can be found by using Mazur's modified maps constructed by Odell and Schlumprecht in \cite{OdellSchlumprecht1994Acta} (e.g., this is the case for all separable Banach lattices with nontrivial cotype, see \cite[Theorem 1.1]{ChengWang2018JMAA}), there were no known examples of separable Banach spaces failing Property (H). In particular, it was open whether $c_0$ has Property (H); this was seen  as a special test case since $c_0$ is Lipschitz universal for all separable metric spaces (see \cite[Theorem on Page 288]{Aharoni1974Israel}). This short note shows that not only does $c_0$ not have Property (H), but in fact no Banach space containing expander graphs coarsely has Property (H). This is an immediate consequence of our main result, which reads  as follows (throughout, $S_X$ denotes the unit sphere of the Banach space $X$).
+% \fi
+
+
+
+% \begin{theorem}\label{Thm.main}
+%     Let $(X_n)_n$ and $(Y_n)_n$ be sequences of Banach spaces such that $Y_n\subseteq L_1$ for all $n\in\N$. Let $(G_n=(V_n,E_n))_n$ be a sequence of expander graphs and assume that there is a sequence of equi-coarse embeddings $(V_n\to X_n)_n$. Let $(F_n\colon S_{X_n}\to S_{Y_n})_n$ be a sequence of equi-uniformly continuous maps. Then, for $n\in\N$ large enough, the maps $F_n$ are all null-homotopic.
+% \end{theorem}
 
 
 We briefly remind the reader of the terminologies in Theorem \ref{Thm.main}. Firstly, given $k\in\N$ and $h>0$, a finite   graph $G=(V,E)$, where $V$ is the set of \emph{vertices} and $E$ the set of \emph{edges} of $G$, is called a \emph{$(k,h)$-expander} if each vertex has at most $k$ neighbors and 
@@ -169,28 +243,7 @@ We briefly remind the reader of the terminologies in Theorem \ref{Thm.main}. Fir
 for all $A\subseteq V$ with $|A|\leq |V|/2$. A \emph{sequence of expander graphs} is understood to be a sequence of $(k,h)$-expanders, for some $k\in\N$ and $h>0$, such that $\lim_n|V_n|=\infty$. As expanders must be connected, we view the vertex set of an expander as a metric space by endowing it with the shortest path distance, which we denote by $d_n$.  For  more on expander graphs, see the monograph \cite{LubotzkyBook2010}. We then say that   $(\varphi_n\colon V_n\to X_n)_n$ is a sequence of  \emph{equi-coarse embeddings} if there are $L>0$ and a nondecreasing $\rho\colon [0,\infty)\to[0,\infty)$ with $\lim_{t\to \infty}\rho(t)=\infty$  such that 
 \[\rho(d_n(v,u))\leq \|\varphi_n(v)-\varphi_n(u)\|\leq Ld_n(v,u)\ \text{ for all }n\in\N\ \text{ and } v,u\in V_n.\]
 
-
-
-In light of Theorem \ref{Thm.main}, in order to rule out Property (H) for Banach spaces containing expanders, it is enough to remind the reader of the definition of this property. Indeed, a Banach space $X$ has \emph{Property (H)} if there are a uniformly continuous function $F\colon S_X\to S_{\ell_2}$ and increasing sequences of finite dimensional Banach spaces $(X_n)_n$ and $(H_n)_n$ of $X$ and of the Hilbert space $\ell_2$, respectively, such that $X=\overline{\bigcup_nX_n}$,  each $F(S_{X_n})\subseteq S_{H_n}$, and each $F_{\restriction S_{X_n}}\colon  S_{X_n}\to S_{H_n}$ is a degree one map.  As a degree one map between finite dimensional spheres is never null-homotopic, the following is an immediate consequence of Theorem \ref{Thm.main}.
-
-\begin{corollary}\label{Cor.Prop.H}
-If a sequence of expander graphs equi-coarsely embeds into a Banach space, then the Banach space  does not have Property (H). In particular, if a Banach space contains the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion (such as $c_0$), then it cannot have Property (H).\qed
-\end{corollary}
-
- We remark that it is currently unknown if a Banach space which does not  contain the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion  can equi-biLipschitzly contain a sequence of expander graphs.
-
-As there are finitely generated groups whose Cayley graphs contain expanders isometrically (see \cite[Theorem 4]{Osajda2020Acta}), the following corollary is also immediate.
-
-\begin{corollary}\label{Cor.no.PropH.cL.universal}
-    There is no Banach space with Property (H) which contains coarse  copies of all countable groups.\qed
-\end{corollary} 
-
-
-Another consequence of Theorem \ref{Thm.main} is a negative answer to a question of W. B. Johnson posted in \cite{JohnsonOverFlow}. Precisely, since any metric space with $n$ elements isometrically embeds into $\ell_\infty^n$,  Theorem \ref{Thm.main} also has the following corollary. 
-
-\begin{corollary}\label{Corollary.Johnson} 
-    There is no sequence of homeomorphisms $(F_n\colon S_{\ell_\infty^n}\to S_{\ell_2^n})_n$ which is equi-uniformly continuous.\qed
-\end{corollary}
+\section{Proof of Main Result}
 
 We now start presenting the proof of Theorem \ref{Thm.main}. The arguments are  surprisingly simple and  only make use of a   standard Poincaré inequality satisfied by expanders: If $G=(V,E)$ is a $(k,h)$-expander, then  for any $f\colon V\to L_1$ we have
      \begin{equation}\label{PIII}
@@ -211,7 +264,7 @@ We now start presenting the proof of Theorem \ref{Thm.main}. The arguments are  
 Fix $k\in\N$ and $h>0$ such that each $G_n$ is a $(k,h)$-expander. For each $n\in\N$, let $d_n$ be the shortest path metric on $V_n$ and let $(\varphi_n\colon V_n\to {X_n})_n$ be a sequence of equi-coarse embeddings; so there is $L>0$ and $\rho\colon [0,\infty)\to [0,\infty)$ with $\lim_{t\to \infty}\rho(t)=\infty$ such that 
 \[\rho(d_n(v,u))\leq \|\varphi_n(v)-\varphi_n(u)\|\leq Ld_n(v,u) \ \text{ for all }\ n\in\N\text{ and }\ v,u\in V_n.\]
 By translating the $\varphi_n$'s  if needed,  assume that $\sum_{v\in V_n}\varphi_n(v)=0$.
-We start noticing that 
+We start by noticing that 
 \begin{equation}\label{Eq.Antoinfty}A_n=\frac{1}{|V_n|}\sum_{v\in V_n}\|\varphi_n(v)\|\underset{n\to \infty}{\longrightarrow} \infty.\end{equation}
 Indeed, as each $G_n$ is a $(k,h)$-expander, the condition on $k$ implies that for each $r>0$, the balls of radius $r$ of each $V_n$ contain at most $k^{r+1}$ elements. Therefore, 
 \[2A_n\geq \frac{1}{|V_n|^2} \sum_{v,u\in V_n}\|\varphi_n(v)-\varphi_n(u)\|\geq \left(1-\frac{k^{r+1}}{|V_n|}\right)\rho(r).\]
@@ -253,18 +306,15 @@ We then conclude that
 \end{align*}
 as desired.
 \end{proof}
+ 
+Another trivial observation needed for the proof of Theorem \ref{Thm.main} is the following sufficient condition for vanishing degree.
 
+\begin{proposition}\label{Prop.null.homotopy}
+    Let $X$ and $Y$ be Banach spaces and $f\colon B_X\to B_Y$ be a continuous map such that $\inf_{x\in B_X}\|f(x)\|>0$. Then the map $F\colon S_X\to S_Y$ given by $F(x)=f(x)/\|f(x)\|$ has degree zero.
+\end{proposition}
  
- 
- 
- Another trivial observation needed for the proof of Theorem \ref{Thm.main} is the following sufficient condition for null-homotopy of our maps:
-
- \begin{proposition}\label{Prop.null.homotopy}
-     Let $X$ and $Y$ be Banach spaces and $f\colon B_X\to B_Y$ be a continuous map such that $\inf_{x\in B_X}\|f(x)\|>0$. Then the map $F\colon S_X\to S_Y$ given by $F(x)=f(x)/\|f(x)\|$ is null-homotopic.
- \end{proposition}
- 
- \begin{proof}
-Let $g_s\colon B_X\to B_X$, $s\in [0,1]$, be a homotopy from $g_0=\mathrm{Id}_{B_X}$ to the constant map $g_1\equiv 0$. Then the map $G_s(x)=f(g_s(x))/\|f(g_s(x))\|$ defines a homotopy \cg{in $S_Y$} from $G_0=F$ to the constant map $G_1\equiv f(0)/\|f(0)\|$.    
+\begin{proof}
+Let $g_s\colon B_X\to B_X$, $s\in [0,1]$, be a homotopy from $g_0=\mathrm{Id}_{B_X}$ to the constant map $g_1\equiv 0$. Then the map $G_s(x)=f(g_s(x))/\|f(g_s(x))\|$ defines a homotopy \cg{in $S_Y$} from $G_0=F$ to the constant map $G_1\equiv f(0)/\|f(0)\|$. Since null-homotopic maps have degree zero, the conclusion follows.
 \end{proof}
  
 
@@ -275,7 +325,7 @@ We start fixing the objects given in the statement of the theorem together with 
  
 
 
-We  now  show how to use Proposition \ref{Prop.null.homotopy} in   order to obtain the null-homotopy of $F_n$ for large $n$. The proof has two parts: (1) we first show each $F_n$ to be homotopic to some other map, and then (2) we show that this other map is the normalization of a function  on $B_{X_n}$ which avoids zero. We start extending each $F_n$ radially to $G_n:2B_{X_n}\to2B_{Y_n}$ by letting \[
+We  now  show how to use Proposition \ref{Prop.null.homotopy} in order to obtain the vanishing of the degree of $F_n$ for large $n$. The proof has two parts: (1) we first show each $F_n$ to be homotopic to some other map, and then (2) we show that this other map is the normalization of a function on $B_{X_n}$ which avoids zero. We start extending each $F_n$ radially to $G_n:2B_{X_n}\to2B_{Y_n}$ by letting \[
   G_n(x)=
   \begin{cases}
     \norm{x}F_n\left(\frac{x}{\norm{x}}\right),&x\neq0,\\
@@ -329,7 +379,7 @@ By our choice of $(\psi_n)_n$,  $\lim_n\Lip(\psi_n)=0$ (see \eqref{Eq.prop.psi})
 \end{equation}
 So, $(f^n_s)_{s\in [0,1]}$ is a homotopy starting at $f^n_0=F_n$. This completes the first step in our approach towards applying Proposition \ref{Prop.null.homotopy}. 
 
-We are   left to show that  $f^n_1$ is null-homotopic for $n$ sufficiently large; for this we show that $H^n_1$ is bounded away from zero on $B_{X_n}$. Notice that, using that $\sum_{v\in V_n} \psi_n(v)=0$ once again,
+We are  left to show that  $f^n_1$ has degree zero for $n$ sufficiently large; for this we show that $H^n_1$ is bounded away from zero on $B_{X_n}$. Notice that, using that $\sum_{v\in V_n} \psi_n(v)=0$ once again,
 \begin{align*}
   \frac{1}{|V_n|}\sum_{v\in V_n}\norm{\psi_n(v)} & \leq\frac{1}{|V_n|}\sum_{v\in V_n}\norm{x+\psi_n(v)}+\norm{x}\\
   &\leq\frac{1}{|V_n|}\sum_{v\in V_n}\norm{x+\psi_n(v)}+\norm{x+\frac{1}{|V_n|}\sum_{v\in V_n}\psi_n(v)}\\
@@ -347,30 +397,42 @@ Then  \eqref{eq:ball} gives that
 \begin{equation*}
  \norm{H^n_1(x)}\geq\frac{1}{8}\ \text{ for all }\ x\in B_{X_n}.
 \end{equation*}
-By Proposition \ref{Prop.null.homotopy}, this shows that $f^n_1$ is null-homotopic for all $n\geq n_1$.\end{proof}
+By Proposition \ref{Prop.null.homotopy}, this shows that $f^n_1$ has degree zero for all $n\geq n_1$.\end{proof}
 
 
- \begin{AIusage}
+\subsection{AI usage disclaimer}
 Theorem \ref{Thm.main} was obtained by  GPT-6 Astra with little input from the authors.   The organization and exposition of the paper are the authors' responsibility only. Moreover, all work done in collaboration with GPT-6 Astra  was independently checked and reworked by the authors,   who also take full responsibility for the correctness  and integrity of the work. 
-\end{AIusage}
 
- \begin{leanformalization*}
-All  mathematical results of this paper were formalized using ChatGPT Astra in Lean 4 (version 4.33.1), using the Mathlib library. While all mathematics developed within  this paper was formalized, we  did not formalize   Osajda's result showing that there are finitely generated groups which contain isometric copies of expander graphs (\cite[Theorem 4]{Osajda2020Acta}). Consequently, Corollary \ref{Cor.no.PropH.cL.universal} is formalized modulo this result. 
- \end{leanformalization*}
+
+\subsection{Lean formalization}
+Lean formulations of the main theorem and its corollaries,
+together with their supporting proofs, were produced using
+GPT-6 Astra and checked in Lean 4 (version 4.33.1), using
+Mathlib and additional source files included in the repository.
+The source files and verification instructions are available at
+\begin{center}
+\url{https://github.com/demendoncabraga/propertyH_lean}
+\end{center}
+\noindent
+The only external mathematical result supplied as an explicit
+hypothesis is Osajda's \cite[Theorem 4]{Osajda2020Acta}, used
+in Corollary \ref{Cor.Group}.
  
-\begin{disclaimer*}
-Other proofs of $c_0$ failing Property (H)
-and of Corollary~\ref{Corollary.Johnson} appeared on arXiv on September 15th, 2026 in \cite{ChengChengWang}. We obtained the proofs of the results in this paper by September 13th, 2026, independent of \cite{ChengChengWang}. While results being obtained independently by different groups has always been part of mathematical research, we believe that this may become more common with the advent of new technologies. After some consideration, we decided to still present this paper as our final draft is short and the main results, Theorem~\ref{Thm.main} and Corollary~\ref{Cor.Prop.H}, cover a potentially larger class of Banach spaces than just those of trivial cotype.
-\end{disclaimer*}
+
+\subsection{Disclaimer on originality of the work} \label{disclaimer}
+A proof of the failure of rational Property (H) for $c_0$ appeared on arXiv on September 15th, 2026 in \cite{ChengChengWang}. We obtained the proofs of the results in this paper by September 13th, 2026, independent of \cite{ChengChengWang}. While results being obtained independently by different groups has always been part of mathematical research, we believe that this may become more common with the advent of new technologies. After some consideration, we decided to still present this paper as our final draft is short and the main results, Theorem~\ref{Thm.main} and Corollaries~\ref{Cor.Prop.H} and \ref{Cor.Group}, cover a potentially larger class of Banach spaces than just those which contain the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion.
+ 
+% \begin{disclaimer*}
+% Other proofs of $c_0$ failing Property (H)
+% and of Corollary~\ref{Corollary.Johnson} appeared on arXiv on September 15th, 2026 in \cite{ChengChengWang}. We obtained the proofs of the results in this paper by September 13th, 2026, independent of \cite{ChengChengWang}. While results being obtained independently by different groups has always been part of mathematical research, we believe that this may become more common with the advent of new technologies. After some consideration, we decided to still present this paper as our final draft is short and the main results, Theorem~\ref{Thm.main} and Corollary~\ref{Cor.Prop.H}, cover a potentially larger class of Banach spaces than just those of trivial cotype.
+% \end{disclaimer*}
 
 
-\begin{acknowledgements*} This paper was written under the auspices of the
+\subsection{Acknowledgements} This paper was written under the auspices of the
 American Institute of Mathematics (AIM) SQuaREs program as part of the
-``Nonlinear geometry of Banach spaces''  SQuaRE project.
-\end{acknowledgements*}
+``Nonlinear geometry of Banach spaces''  SQuaRE project. The authors are also indebted to Cynthia Bortolotto and João Pedro Ramos for sharing their files for Lean formalization; without this, the Lean formalization would not have been possible. B. M. Braga would also like to thank  Christian Rosendal,  Mitchel Taylor, and Cláudio Verdun for several discussions about Lean formalization.
 
-
-\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+ \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
 \providecommand{\MRhref}[2]{%
@@ -378,11 +440,6 @@ American Institute of Mathematics (AIM) SQuaREs program as part of the
 }
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{CCW26}
-
-\bibitem[Aha74]{Aharoni1974Israel}
-I.~Aharoni, \emph{Every separable metric space is {L}ipschitz equivalent to a
-  subset of {$c\sp{+}\sb{0}$}}, Israel J. Math. \textbf{19} (1974), 284--291.
-  \MR{511661}
 
 \bibitem[CCW26]{ChengChengWang}
 L.~{Cheng}, Q.~{Cheng}, and Y.~{Wang}, \emph{{On Property (H) of $c_0$ and the
@@ -394,9 +451,9 @@ Q.~Cheng and Q.~Wang, \emph{On {B}anach spaces with {K}asparov and {Y}u's
   {P}roperty ({H})}, J. Math. Anal. Appl. \textbf{457} (2018), no.~1, 200--213.
   \MR{3702702}
 
-\bibitem[Joh11]{JohnsonOverFlow}
-W.~B. Johnson, \emph{Lipschitz homeomorphisms between spheres of n-dimensional
-  spaces}, 2011, URL:https://mathoverflow.net/q/60426 (version: 2011-04-03).
+\bibitem[Gro03]{Gromov2003GAFA}
+M.~Gromov, \emph{Random walk in random groups}, Geom. Funct. Anal. \textbf{13}
+  (2003), no.~1, 73--146. \MR{1978492}
 
 \bibitem[KY12]{KasparovYu2012GeoTop}
 G.~Kasparov and G.~Yu, \emph{{The Novikov conjecture and geometry of Banach
@@ -419,6 +476,15 @@ D.~Osajda, \emph{Small cancellation labellings of some infinite graphs and
 M.~Ostrovskii, \emph{Metric embeddings}, De Gruyter Studies in Mathematics,
   vol.~49, De Gruyter, Berlin, 2013, Bilipschitz and coarse embeddings into
   Banach spaces. \MR{3114782}
+
+\bibitem[STY02]{SkandalisTuYu2002Top}
+G.~Skandalis, J.~L. Tu, and G.~Yu, \emph{The coarse {B}aum-{C}onnes conjecture
+  and groupoids}, Topology \textbf{41} (2002), no.~4, 807--834. \MR{1905840}
+
+\bibitem[Yu00]{Yu2000}
+G.~Yu, \emph{The coarse {B}aum-{C}onnes conjecture for spaces which admit a
+  uniform embedding into {H}ilbert space}, Invent. Math. \textbf{139} (2000),
+  no.~1, 201--240.
 
 \end{thebibliography}
 

@@ -9,7 +9,7 @@ namespace PropertyH
 open Filter MeasureTheory
 open scoped Topology
 
-/-- Source: revised `Thm.main`, allowing a different L¹ target measure for each n. -/
+/-- Proof support for `Thm.main`: construct null-homotopies with varying L¹ measures. -/
 theorem sphere_maps_eventually_nullhomotopic_coarse_varying
     (E : ExpanderFamily) (X Y : ℕ → Type*)
     [∀ n, NormedAddCommGroup (X n)] [∀ n, NormedSpace ℝ (X n)]
@@ -25,7 +25,8 @@ theorem sphere_maps_eventually_nullhomotopic_coarse_varying
   exact sphere_maps_eventually_nullhomotopic_of_normalized E X Y μ j
     (exists_normalized_coarse_expander_embeddings E X hE) F hF
 
-theorem sphere_maps_eventually_nullhomotopic_coarse
+/-- Source: `Thm.main`, degree zero in the reduced-homology sense. -/
+theorem sphere_maps_eventually_degreeZero_coarse
     (E : ExpanderFamily) (X Y : ℕ → Type*)
     [∀ n, NormedAddCommGroup (X n)] [∀ n, NormedSpace ℝ (X n)]
     [∀ n, CompleteSpace (X n)]
@@ -36,13 +37,14 @@ theorem sphere_maps_eventually_nullhomotopic_coarse
     (hE : EquiCoarseGraphEmbeddings E X)
     (F : ∀ n, C(UnitSphere (X n), UnitSphere (Y n)))
     (hF : EquiUniformContinuous (fun n => F n)) :
-    ∀ᶠ n in atTop, (F n).Nullhomotopic := by
-  exact sphere_maps_eventually_nullhomotopic_coarse_varying E X Y (fun _ => μ) j hE F hF
+    ∀ᶠ n in atTop, HasDegreeZero (F n) := by
+  exact (sphere_maps_eventually_nullhomotopic_coarse_varying E X Y (fun _ => μ) j hE F hF).mono
+    (fun n hn => hasDegreeZero_of_nullhomotopic (F n) hn)
 
-/-- Source: `Cor.Prop.H` with degree-one restrictions. -/
-theorem not_hasPropertyH_of_containsCoarseExpanders
+/-- Source: `Cor.Prop.H`, including rational Property (H). -/
+theorem not_hasRationalPropertyH_of_containsCoarseExpanders
     (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
-    (hX : ContainsCoarseExpanders X) : ¬ HasPropertyH X := by
+    (hX : ContainsCoarseExpanders X) : ¬ HasRationalPropertyH X := by
   classical
   rintro ⟨F, hF, A, B, hA, hB, hAfin, hBfin, hdense, hrest⟩
   obtain ⟨E, hE⟩ := hX
@@ -60,5 +62,11 @@ theorem not_hasPropertyH_of_containsCoarseExpanders
     (fun n => A (m n)) (fun n => B (m n)) μ j hm (fun n => f (m n)) hmod
   obtain ⟨n, y, hy⟩ := hnull.exists
   exact (hdegree (m n)).not_nullhomotopic ⟨y, hy⟩
+
+/-- Source: `Cor.Prop.H`, ordinary Property (H) follows from the rational obstruction. -/
+theorem not_hasPropertyH_of_containsCoarseExpanders
+    (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
+    (hX : ContainsCoarseExpanders X) : ¬ HasPropertyH X := by
+  exact fun h => not_hasRationalPropertyH_of_containsCoarseExpanders X hX h.to_rational
 
 end PropertyH

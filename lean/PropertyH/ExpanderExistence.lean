@@ -175,5 +175,4 @@ def constructedExpanderFamily : ExpanderFamily where
     intro b
     exact Filter.eventually_atTop.mpr ⟨b, fun n hn => by omega⟩
 
-theorem exists_expanderFamily : Nonempty ExpanderFamily := ⟨constructedExpanderFamily⟩
 end PropertyH.PermutationExpanders

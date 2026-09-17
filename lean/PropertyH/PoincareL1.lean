@@ -95,29 +95,33 @@ theorem norm_edge_sum_le_of_lipschitz {V X : Type*} [Fintype V]
 
 /-- Source PIII: the L1-valued Poincare inequality with the manuscript constant. -/
 theorem expander_poincare_proved {V : Type*} [Fintype V] (G : SimpleGraph V)
-    (k : ℕ) (h : ℝ) (hG : IsVertexExpander G k h) (hV : 5 ≤ Fintype.card V)
+    (k : ℕ) (h : ℝ) (hG : IsVertexExpander G k h)
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     (f : V → Lp ℝ 1 μ) (L : ℝ) (hL : 0 ≤ L)
     (hf : ∀ v u, ‖f v - f u‖ ≤ L * G.dist v u) :
     (Fintype.card V : ℝ)⁻¹ *
       (∑ v, ‖f v - (Fintype.card V : ℝ)⁻¹ • ∑ u, f u‖) ≤ (2 * k / h) * L := by
   classical
-  have : Nonempty V := Fintype.card_pos_iff.mp (by omega)
-  have hp := hG.L1_pairwise_bound μ f
-  have hj := mean_deviation_le_pairwise f
-  have he := norm_edge_sum_le_of_lipschitz hG.2.1 f L hL hf
-  have hN : (0 : ℝ) < Fintype.card V := by exact_mod_cast Fintype.card_pos
-  have hm : h * (∑ v, ‖f v - average f‖) ≤
-      2 * (∑ v, ∑ u, if G.Adj v u then ‖f v - f u‖ else 0) := by
-    nlinarith [mul_le_mul_of_nonneg_left hj hG.1.le]
-  have hb : h * (∑ v, ‖f v - average f‖) ≤ 2 * (Fintype.card V : ℝ) * k * L := by
-    nlinarith
-  have hs : (∑ v, ‖f v - average f‖) ≤ (2 * (Fintype.card V : ℝ) * k * L) / h :=
-    (le_div_iff₀ hG.1).mpr (by nlinarith)
-  change (Fintype.card V : ℝ)⁻¹ * (∑ v, ‖f v - average f‖) ≤ _
-  calc
-    _ = (∑ v, ‖f v - average f‖) / (Fintype.card V : ℝ) := by ring
-    _ ≤ ((2 * (Fintype.card V : ℝ) * k * L) / h) / Fintype.card V :=
-      div_le_div_of_nonneg_right hs hN.le
-    _ = _ := by field_simp
+  cases isEmpty_or_nonempty V with
+  | inl hEmpty =>
+    simp only [Fintype.card_eq_zero, Nat.cast_zero, inv_zero, zero_mul]
+    exact mul_nonneg (div_nonneg (by positivity) hG.1.le) hL
+  | inr hNonempty =>
+    have hp := hG.L1_pairwise_bound μ f
+    have hj := mean_deviation_le_pairwise f
+    have he := norm_edge_sum_le_of_lipschitz hG.2.1 f L hL hf
+    have hN : (0 : ℝ) < Fintype.card V := by exact_mod_cast Fintype.card_pos
+    have hm : h * (∑ v, ‖f v - average f‖) ≤
+        2 * (∑ v, ∑ u, if G.Adj v u then ‖f v - f u‖ else 0) := by
+      nlinarith [mul_le_mul_of_nonneg_left hj hG.1.le]
+    have hb : h * (∑ v, ‖f v - average f‖) ≤ 2 * (Fintype.card V : ℝ) * k * L := by
+      nlinarith
+    have hs : (∑ v, ‖f v - average f‖) ≤ (2 * (Fintype.card V : ℝ) * k * L) / h :=
+      (le_div_iff₀ hG.1).mpr (by nlinarith)
+    change (Fintype.card V : ℝ)⁻¹ * (∑ v, ‖f v - average f‖) ≤ _
+    calc
+      _ = (∑ v, ‖f v - average f‖) / (Fintype.card V : ℝ) := by ring
+      _ ≤ ((2 * (Fintype.card V : ℝ) * k * L) / h) / Fintype.card V :=
+        div_le_div_of_nonneg_right hs hN.le
+      _ = _ := by field_simp
 end PropertyH

@@ -1,43 +1,37 @@
-# Final manuscript verification record
+# Current manuscript synchronization
 
 ## Scope
 
-Real-scalar `paper/main.tex`, modulo the explicit Osajda expander-group hypothesis.
-Maurey–Pisier is not used. The manuscript is unchanged by this cleanup.
+Real-scalar `paper/main.tex`, unchanged by this synchronization. Degree zero for
+arbitrary Banach spheres is interpreted as vanishing reduced integral homology
+maps, with the author's approval. Osajda is the sole external hypothesis.
 
-## Final-draft cleanup (2026-09-16)
+## Changes by paper result
 
-Rewired the finite-sup/c₀ and Johnson corollaries to the coarse main theorem.
-Removed the obsolete biLipschitz and quasi-isometric main-theorem routes,
-cotype developments, unused Hilbert-space and definition-comparison generalizations,
-unused diameter/normalization estimates, and partial Osajda construction work.
-Removed dead declarations from retained modules. Renamed the surviving sphere
-restriction helper module to `SphereRestrictions`.
+- Theorem 1: expose eventual degree zero; retain the null-homotopy construction
+  only as shared proof support. Remove the old common-target public wrapper.
+- Corollary 2: define rational Property (H), prove the nonzero-degree obstruction,
+  and derive the ordinary obstruction via Property (H) implying its rational
+  version. Preserve uniform finite sup-space containment and c₀ proofs.
+- Corollary 3: select one Osajda group before every target Banach space. Replace
+  group-universality predicates with a specified-group coarse embedding and its
+  restriction to expanders; remove the superseded wrapper module.
+- Lemma 4 and P.I.: retain their established proofs and constants; Poincaré
+  continues to have no cardinality or nonemptiness restriction.
+- Proposition 5: replace the public null-homotopy conclusion with degree zero.
+- Deleted Johnson corollary: remove 116 exclusive declarations, including six
+  assembly/topology modules and five vendored Brouwer modules. Preserve upstream
+  attribution files. Preserve every shared expander and finite-metric dependency.
 
-Removed retired prompts, informalization-design documents and the historical
-setup report. Replaced the historical log with this current verification record;
-Git history retains the earlier development. Kept the licensed Brouwer proof and
-its provenance because Johnson's corollary needs sphere noncontractibility.
+## Verification
 
-The terminal audit now checks kernel and source-reference dependencies from the
-final manuscript statements and requires every source declaration to be both
-needed and inventoried. It rejects stale inventory records and orphan modules.
-Supporting biLipschitz finite-metric estimates remain only where the current
-proofs use them. This is dependency minimality relative to the retained proofs,
-not a claim of globally shortest proofs.
-
-## Validation
-
-- Source modules: 87 → 57. Source declarations: 501 → 292 (210 old
-  declarations removed, one focused c₀ embedding helper added).
-- Clean build passed after removing all project build artifacts from the test
-  checkout; the pinned Mathlib dependency cache was retained.
-- Terminal audit passed modulo Osajda, including all 292 axiom reports and the
-  dependency/inventory check. No proof placeholders or nonstandard axioms.
-- All 14 regression tests passed, covering both the external-scope gate and
-  the dependency/inventory gate.
-- The unconditional terminal audit rejects exactly D12 (Osajda), as intended.
-- The compiled types of all ten final manuscript statements were compared with
-  the pre-cleanup version and are identical.
-- The manuscript checksum is unchanged, and the source diff has no whitespace
-  errors. No dependency pin was changed.
+- `lake build` passed with no reported warnings.
+- All 14 audit regression tests passed.
+- Terminal audit passed modulo Osajda: 179 declarations in 45 modules, all
+  supporting the ten current manuscript roots; no placeholders or nonstandard
+  axioms. The unconditional gate rejected exactly D12 (Osajda), as intended.
+- All local imports resolve. No new scratch or backup files enter the repository.
+- The current manuscript SHA256 remains
+  `261e4624587497db03a3a2d07fef80e1bbf541c2f3c65884eac280783abbbb40`.
+- Upstream license and provenance records are preserved; no vendored Lean code
+  remains in the active dependency tree.

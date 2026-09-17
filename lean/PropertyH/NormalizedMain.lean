@@ -37,7 +37,7 @@ theorem sphere_maps_eventually_nullhomotopic_of_normalized
   have hε : 0 < ε := by dsimp [ε]; positivity
   have hη : 0 < ε / c := div_pos hε hc
   obtain ⟨δ, hδ, hmod⟩ := equiUniformContinuous_radialExtension F hF (ε / c) hη
-  filter_upwards [hψ, hlarge, hKlim.eventually_lt_const hδ] with n hn hncard hnK
+  filter_upwards [hψ, hKlim.eventually_lt_const hδ] with n hn hnK
   obtain ⟨hV, hzero, hnorm, hedge, hspread⟩ := hn
   let : Nonempty (E.V n) := hV
   apply nullhomotopic_of_small_average_deviation (F n) (ψ n) hzero a ε hspread
@@ -45,7 +45,7 @@ theorem sphere_maps_eventually_nullhomotopic_of_normalized
   · exact (min_le_right _ _).trans_lt (by linarith : a / 4 < a / 2)
   · intro t x
     have hp := radial_average_deviation_bound (E.graph n) E.degreeBound E.expansion
-      (E.expands n) hncard (μ n) (j n) (F n) (ψ n) hnorm (K n) δ (ε / c) hη.le hnK
+      (E.expands n) (μ n) (j n) (F n) (ψ n) hnorm (K n) δ (ε / c) hη.le hnK
       hedge (hmod n) t x
     simpa only [show (2 * (E.degreeBound : ℝ) / E.expansion) = c from rfl,
       mul_div_cancel₀ ε hc.ne'] using hp

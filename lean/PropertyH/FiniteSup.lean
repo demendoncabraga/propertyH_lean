@@ -21,13 +21,4 @@ theorem finiteDistanceCoordinates_isometry {V : Type*} [Fintype V] [PseudoMetric
       dist_le_pi_dist (finiteDistanceCoordinates v) (finiteDistanceCoordinates w)
         (Fintype.equivFin V v)
 
-/-- A common uniform-continuity modulus survives arbitrary reindexing. -/
-theorem EquiUniformContinuous.reindex {X Y : ℕ → Type*}
-    [∀ n, PseudoMetricSpace (X n)] [∀ n, PseudoMetricSpace (Y n)]
-    {f : ∀ n, X n → Y n} (hf : EquiUniformContinuous f) (r : ℕ → ℕ) :
-    EquiUniformContinuous (fun n => f (r n)) := by
-  intro ε hε
-  obtain ⟨δ, hδ, hfδ⟩ := hf ε hε
-  exact ⟨δ, hδ, fun n x y hxy => hfδ (r n) x y hxy⟩
-
 end PropertyH

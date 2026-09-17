@@ -1,52 +1,51 @@
 # Verification scope
 
-The final real-scalar manuscript is formalized **modulo Osajda only**.
-`OsajdaExpanderGroup` is an ordinary proposition asserting that one countable,
-finitely generated group has a Cayley graph containing an expander family
-isometrically. It is an explicit parameter of the group corollary, not an axiom
-or a proof placeholder. Osajda's construction is outside this scope; its unused
-partial development has been removed.
+The current real-scalar manuscript is formalized modulo exactly
+`OsajdaExpanderGroup`, an explicit proposition supplying a countable group with
+a finite connected Cayley graph generating set and isometric expander copies.
+Only `exists_group_not_coarsely_embeddable_in_propertyH` assumes this proposition.
+No project axiom or proof placeholder substitutes for its construction.
 
-Every other manuscript result needs no external mathematical hypothesis.
-Uniform finite sup-space containment is assumed directly in the revised
-corollary. No Maurey–Pisier theorem or cotype characterization is used.
+## Degree and Property (H)
 
-## Definition conventions
+The manuscript uses degree zero for arbitrary Banach spheres without assuming
+finite dimension or equal dimensions. With the author's explicit approval,
+`HasDegreeZero` means that the induced maps on reduced integral singular homology
+vanish in every nonnegative degree. It is not defined as null-homotopy. The proof
+constructs a null-homotopy and deduces this conclusion. Where integer degree can
+be expressed with integral homology generators,
+`HasDegreeZero.homologyDegree_eq_zero` proves it is zero.
 
-All Banach and L₁ spaces are real. `HasPropertyH` follows the manuscript's ℓ₂
-formulation directly: a uniformly continuous sphere map, increasing finite
-source and target stages, a dense source union, and degree-one restrictions.
-No additional arbitrary-Hilbert or dense-domain comparison is needed for this
-manuscript; those unused generalizations have been removed.
+`HasPropertyH` and `HasRationalPropertyH` use the manuscript's real ℓ₂ target,
+increasing finite-dimensional stages, dense source union, and respectively
+one or nonzero integral degree on restrictions. Generators are existentially
+chosen, so degree one means degree one after orientation choices. The ambient
+zero-dimensional empty-sphere case is explicit in both definitions. Reduced H₀
+handles the one-dimensional ambient case. No sphere-homology calculation or
+homeomorphism-classification theorem is assumed as an external hypothesis.
 
-Degree uses top reduced integral singular homology. The two generators are
-existentially chosen, so the condition means degree one after choosing
-orientations (absolute degree one relative to fixed orientations). The
-zero-dimensional empty-sphere case is explicit; reduced H₀ treats S⁰.
-No homeomorphism-classification hypothesis is assumed.
+## Other conventions
 
-`UniformlyContainsFiniteSup` allows nonlinear maps with one common symmetric
-biLipschitz bound, after rescaling the embeddings. It therefore covers linear
-containment as well. Distance coordinates embed finite metrics into finite sup
-spaces; zero extension embeds these spaces isometrically into c₀.
+A finite set whose Cayley graph is connected witnesses finite generation. The
+group in Corollary 3 is chosen once, before all Banach targets; coarse controls
+may depend on the embedding. All target universes are supported by the theorem.
+
+Uniform finite sup-space containment allows nonlinear biLipschitz maps with one
+common bound, and therefore includes linear containment. Normalization proves
+average norms converge to one. Poincaré has no size or nonemptiness restriction;
+the empty sum and `0⁻¹ = 0` give zero on the left for an empty graph.
 
 ## Verification and minimality
 
-Run `sh scripts/audit.sh --terminal --modulo-external`. It requires a complete
-inventory, exactly the Osajda external hypothesis, no proof placeholders or
-project axioms, and only standard foundational axioms for all declarations.
+Run `python3 scripts/test_audit.py` and
+`sh scripts/audit.sh --terminal --modulo-external`. The audit builds the library,
+checks every source declaration against the ten current manuscript roots and
+the inventory, and permits only `propext`, `Classical.choice`, and `Quot.sound`
+in axiom reports. The unconditional gate rejects Osajda as intended.
 
-The dependency audit starts at ten statements covering the numbered results,
-the c₀ witness and the Poincaré estimate. It follows both compiled proof terms
-and Lean's source-reference index. Every source declaration must lie in this
-closure; source references include lemmas needed to elaborate tactics even when
-they disappear from the compiled proof term. This checks necessity relative to
-the retained proofs, not an absolute shortest possible proof of the paper.
-Supporting finite-metric biLipschitz estimates and the licensed Brouwer proof
-remain because the current corollaries use them. Old theorem versions and
-unrelated developments are absent.
-
-`python3 scripts/test_audit.py` checks the external-scope gate. The unconditional
-terminal gate deliberately rejects Osajda. The source-to-statement review remains
-a separate mathematical obligation; contextual literature and historical claims
-are not asserted to be formalized.
+Necessity is measured relative to current proof terms and source references,
+including elaboration dependencies. This is not an absolute shortest-proof claim.
+Johnson's deleted corollary and its exclusive Brouwer/topology dependencies are
+removed. The old universal-target group statements are replaced, not retained.
+Upstream license/provenance records are preserved as attribution records.
+Source-to-statement review remains distinct from mechanical verification.

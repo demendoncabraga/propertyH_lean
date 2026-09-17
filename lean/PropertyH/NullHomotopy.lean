@@ -1,4 +1,4 @@
-import PropertyH.Basic
+import PropertyH.SphereDegree
 
 /-! The normalization construction in `Prop.null.homotopy`. -/
 
@@ -44,14 +44,14 @@ def ballMapToAmbient (f : C(UnitBall X, UnitBall Y)) : C(UnitBall X, Y) where
 
 /-- Source: `Prop.null.homotopy`.
 `$\inf_{x\in B_X}\|f(x)\|>0$`; the map
-`$F(x)=f(x)/\|f(x)\|$` on `$S_X$` is null-homotopic.
+`$F(x)=f(x)/\|f(x)\|$` on `$S_X$` has degree zero.
 Completeness is unnecessary, so this also applies to Banach spaces. -/
-theorem ball_normalization_nullhomotopic (f : C(UnitBall X, UnitBall Y))
+theorem ball_normalization_degreeZero (f : C(UnitBall X, UnitBall Y))
     (hf : 0 < sInf (Set.range (fun x => ‖(f x : Y)‖))) :
-    ((normalizeMap (ballMapToAmbient f)
+    HasDegreeZero ((normalizeMap (ballMapToAmbient f)
       (nonvanishing_of_positive_infimum (ballMapToAmbient f) hf)).comp
-        (sphereInclusion X)).Nullhomotopic := by
-  exact normalized_boundary_nullhomotopic _ _
+        (sphereInclusion X)) := by
+  exact hasDegreeZero_of_nullhomotopic _ (normalized_boundary_nullhomotopic _ _)
 
 end PropertyH
 

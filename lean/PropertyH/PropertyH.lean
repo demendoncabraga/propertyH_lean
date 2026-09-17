@@ -27,4 +27,23 @@ def HasPropertyH (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] : Prop :
         (submoduleSphereInclusion (B n)).comp f = F.comp (submoduleSphereInclusion (A n)) ∧
         SphereMapDegreeOne f
 
+/-- Source: rational Property (H), with nonzero-degree finite-stage restrictions. -/
+def HasRationalPropertyH (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] : Prop :=
+  ∃ F : C(UnitSphere X, UnitSphere Hilbert), UniformContinuous F ∧
+    ∃ (A : ℕ → Submodule ℝ X) (B : ℕ → Submodule ℝ Hilbert),
+      Monotone A ∧ Monotone B ∧
+      (∀ n, FiniteDimensional ℝ (A n)) ∧ (∀ n, FiniteDimensional ℝ (B n)) ∧
+      Dense (⋃ n, (A n : Set X)) ∧
+      ∀ n, ∃ f : C(UnitSphere (A n), UnitSphere (B n)),
+        (submoduleSphereInclusion (B n)).comp f = F.comp (submoduleSphereInclusion (A n)) ∧
+        SphereMapNonzeroDegree f
+
+
+theorem HasPropertyH.to_rational {X : Type*}
+    [NormedAddCommGroup X] [NormedSpace ℝ X] (h : HasPropertyH X) :
+    HasRationalPropertyH X := by
+  exact (fun ⟨F, hF, A, B, hA, hB, hAfin, hBfin, hdense, hrest⟩ =>
+    ⟨F, hF, A, B, hA, hB, hAfin, hBfin, hdense,
+      fun n => (hrest n).imp (fun f ⟨hc, hd⟩ => ⟨hc, hd.nonzero⟩)⟩) h
+
 end PropertyH

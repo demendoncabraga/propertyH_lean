@@ -1,71 +1,91 @@
 # Source coverage review
 
 Authoritative manuscript: `paper/main.tex`.
-SHA256: `01a562684f5bbbf9ee64554ae891212cbfe0a8124d367a0e53a4c9abea760ac9`.
-Reviewed against the final-draft cleanup on 2026-09-16. The manuscript was not edited.
+SHA256: `261e4624587497db03a3a2d07fef80e1bbf541c2f3c65884eac280783abbbb40`.
+Reviewed against the current revision on 2026-09-16. The manuscript was not edited.
+Commented-out LaTeX statements are excluded from the inventory.
 
-## Statements
+## Current numbered results
 
-All declaration names below are in namespace `PropertyH`.
+All declaration names are in namespace `PropertyH`.
 
-| Source | Declaration | File under `lean/PropertyH/` | External hypothesis |
+| Paper | Hypotheses and conclusion | Declaration | File under `lean/PropertyH/` |
 | --- | --- | --- | --- |
-| `Thm.main` | `sphere_maps_eventually_nullhomotopic_coarse` | `CoarseMain.lean` | None |
-| `Cor.Prop.H`, first assertion | `not_hasPropertyH_of_containsCoarseExpanders` | `CoarseMain.lean` | None |
-| `Cor.Prop.H`, second assertion | `not_hasPropertyH_of_uniformlyContainsFiniteSup` | `UniversalFinite.lean` | None |
-| c₀ example | `uniformlyContainsFiniteSup_cZero` | `UniversalFinite.lean` | None |
-| c₀ conclusion | `not_hasPropertyH_cZero` | `Corollaries.lean` | None |
-| `Cor.no.PropH.cL.universal` | `not_standard_coarsely_universal_groups_of_hasPropertyH` | `StandardGroupCorollary.lean` | `OsajdaExpanderGroup` |
-| `Corollary.Johnson` | `no_equiUniform_sphere_homeomorphisms` | `Corollaries.lean` | None |
-| `Lemma`, `Eq.prop.psi` | `exists_coarse_normalization` | `CoarseNormalized.lean` | None |
-| `Prop.null.homotopy` | `ball_normalization_nullhomotopic` | `NullHomotopy.lean` | None |
-| P.I. (`PIII`) | `expander_poincare` | `ExpanderEstimates.lean` | None |
+| Theorem 1, `Thm.main` | Banach spaces Xₙ,Yₙ with Yₙ linearly isometric to subspaces of L₁; equi-coarse expander embeddings into Xₙ; equi-uniformly continuous sphere maps Fₙ. Eventually Fₙ has degree zero. | `sphere_maps_eventually_degreeZero_coarse` | `CoarseMain.lean` |
+| Corollary 2, `Cor.Prop.H` | A Banach space containing equi-coarse expanders fails Property (H), including rational Property (H). | `not_hasPropertyH_of_containsCoarseExpanders`, `not_hasRationalPropertyH_of_containsCoarseExpanders` | `CoarseMain.lean` |
+| Corollary 2, in particular | Uniform distortion containment of every finite sup space implies failure of Property (H). | `not_hasPropertyH_of_uniformlyContainsFiniteSup` | `UniversalFinite.lean` |
+| Corollary 2, c₀ example | c₀ uniformly contains the finite sup spaces and fails Property (H). | `uniformlyContainsFiniteSup_cZero`, `not_hasPropertyH_cZero` | `UniversalFinite.lean`, `Corollaries.lean` |
+| Corollary 3, `Cor.Group` | There exists one finitely generated group that coarsely embeds into no Banach space with Property (H). | `exists_group_not_coarsely_embeddable_in_propertyH` | `CoarseGroupCorollary.lean` |
+| Lemma 4, `Lemma`, `Eq.prop.psi` | Equi-coarse expander embeddings yield unit-ball maps with zero sums, average-norm liminf at least 1, and Lipschitz constants tending to zero. | `exists_coarse_normalization` | `CoarseNormalized.lean` |
+| Proposition 5, `Prop.null.homotopy` | Continuous f:Bₓ→Bᵧ with positive infimum of its norm has a degree-zero normalized boundary map. | `ball_normalization_degreeZero` | `NullHomotopy.lean` |
+| P.I., `PIII` | For a finite (k,h)-expander and an L₁-valued map with Lipschitz bound L, mean deviation is at most (2k/h)L. | `expander_poincare` | `ExpanderEstimates.lean` |
 
-The main theorem uses genuine common coarse compression and upper bounds,
-arbitrary sequences of real Banach spaces, and real L₁-embeddable targets. Its
-varying-measure helper is used by the corollaries. Normalization supplies zero
-sum, unit-ball bounds, vanishing global Lipschitz bounds, and average norms
-converging to one (hence the stated liminf). The ball proposition retains the
-positive-infimum hypothesis.
+Only Corollary 3 has an external mathematical hypothesis, `OsajdaExpanderGroup`.
+The group is selected before quantifying over all target Banach spaces. A finite
+set with connected Cayley graph witnesses finite generation; its graph distance
+is the word metric. Coarse embeddings have the usual two nondecreasing control
+functions, with lower control tending to infinity.
 
-## Definitions and proof support
+## Definitions
 
-- `Basic`, `Expanders` and `CoarseEmbeddings` define spheres, equi-uniform
-  continuity, expanders and equi-coarse graph embeddings. Connectivity is proved;
-  empty initial graph stages are permitted. Compression is extended monotonically
-  to all reals, with nonnegativity required on nonnegative arguments.
-- `PropertyH`, `SphereDegree` and `ReducedHomology` define the manuscript's
-  degree-one Property (H) and prove its obstruction to null-homotopy. Orientation
-  and empty-sphere conventions are specified in `VERIFICATION_SCOPE.md`.
-- `PoincareScalar` and `PoincareL1` prove the Poincaré estimate by cut expansion,
-  coarea and integration; `PoincareTransfer` transports it through an L₁ isometry.
-- Coarse ball counting, radial truncation and centering prove the normalization.
-  Radial extensions, averaging and nonvanishing then prove null-homotopy.
-- `CoarsePaving`, `SphereRestrictions` and `HilbertL1` supply the finite-stage
-  approximation, common continuity modulus and Gaussian L₁ embedding used in
-  the Property (H) corollary.
-- `FiniteSup`, `GraphMetricSpace`, `UniversalFinite` and `CZero` give the finite
-  metric constructions. Their elementary biLipschitz bounds are proof support,
-  not alternative versions of the paper's coarse theorem.
-- `CoarseControl` obtains linear upper control on Cayley graphs from general
-  coarse control. The group corollary already excludes universality for finitely
-  generated groups, which suffices for the manuscript's countable-group claim.
-  Controls may depend on the group and finite generating set.
-- Johnson's conclusion uses the coarse theorem, constructed expanders and finite
-  sphere noncontractibility. The licensed cubical-Sperner/Brouwer development is
-  retained because it proves that last prerequisite without an external assumption.
+- `UnitSphere` and `UnitBall`: unit sphere and closed unit ball.
+- `IsVertexExpander`: positive h, maximum degree k, and external vertex boundary
+  of size at least h|A| for every subset with 2|A| ≤ |V|.
+- `ExpanderFamily`: common k,h with finite vertex cardinalities tending to infinity.
+- `EquiCoarseGraphEmbeddings`: common L>0 and nondecreasing compression ρ tending
+  to infinity, with ρ(d(v,u)) ≤ ‖φ(v)-φ(u)‖ ≤ Ld(v,u). The compression is extended
+  to all real inputs and is nonnegative on nonnegative inputs.
+- `EquiUniformContinuous`: one epsilon-delta bound works for every index.
+- `HasPropertyH`: a uniformly continuous sphere map into real ℓ₂, increasing
+  finite-dimensional source and target stages, dense source union, and degree-one
+  restrictions, expressed by `SphereMapDegreeOne`.
+- `HasRationalPropertyH`: the same data with nonzero-degree restrictions,
+  expressed by `SphereMapNonzeroDegree`.
+- `UniformlyContainsFiniteSup`: maps of all finite sup spaces with one common
+  symmetric biLipschitz bound. This includes linear uniform containment.
+- `HasDegreeZero`: all induced maps on reduced integral homology vanish. This
+  interpretation for arbitrary Banach spheres was explicitly approved by the author.
+  `HasDegreeZero.homologyDegree_eq_zero` proves the integer-degree conclusion
+  whenever homology generators are given.
 
-## Proof choices and limits
+## Proof correspondence and conventions
 
-The formal proof uses the sufficient integer-radius ball bound `1 + k^r` and
-the positive normalization constant `1 + 2kL/h`. Quantitative lemmas package the
-paper's epsilon/delta choices. These are proof choices, not weakened conclusions.
-No complex-scalar extension is claimed. Contextual Novikov and positive Property
-(H) results, the full Aharoni theorem, historical claims and open-question status
-are not proof dependencies and are not claimed re-proved.
+The null-homotopy construction remains as proof support for the current degree-zero
+results and the rational obstruction. It is not retained as an obsolete public
+manuscript theorem. Homology generators specify orientations; degree one permits
+choosing orientations. Nonzero degree is independent of those choices. Empty
+finite stages have the same explicit convention in both Property (H) definitions.
 
-Every retained source declaration is registered in `lean/coverage.json` and
-checked against the dependency closure of the ten statements above. Obsolete
-biLipschitz/quasi-isometric theorem versions, cotype results, unused generalizations
-and partial Osajda-construction details have been removed rather than archived in
-the active source tree. Earlier versions remain in Git history.
+The normalization proof supplies average norms converging to 1, which implies
+the stated liminf. It uses C=1+2kL/h to ensure positivity, and the sufficient
+integer-radius graph-ball bound 1+k^r. These are unchanged proof choices; the
+manuscript conclusions and Poincaré constant are preserved. The Poincaré theorem
+has no size restriction; Lean's empty-vertex case has zero left-hand side.
+
+Scalar coarea and integration prove Poincaré. Coarse ball counting, truncation,
+and centering prove normalization. Radial extensions, averaging, and nonvanishing
+prove null-homotopy and hence degree zero. Dense-stage approximation and Gaussian
+L₁ isometries prove the Property (H) obstruction. Constructed expanders, finite
+metric distance coordinates, and zero extension into c₀ prove the remaining
+parts of Corollary 2. Osajda supplies only the group witness in Corollary 3.
+
+## Revision and deletion review
+
+Git's available manuscript baseline is commit `fb0f809`. Its diff confirms the
+new degree-zero conclusions, rational Property (H), the replacement group
+statement, and deletion of `Corollary.Johnson`. The normalization statement and
+Poincaré constant are unchanged. The older trivial-cotype formulation in that
+commit had already been replaced in the working formalization by finite-sup
+containment before this revision.
+
+Removed Johnson's theorem, its two assembly helpers, its reindexing and expander
+existence wrappers, six exclusive topology/assembly modules, and five vendored
+Brouwer modules. The license/provenance records remain. Removed old group-universality
+interfaces and their wrapper module, replacing them with embedding of a specified
+group. Shared expander constructions, finite metric embeddings, reduced homology,
+and analytic dependencies remain.
+
+Every retained source declaration is inventoried in `lean/coverage.json` and must
+belong to the kernel/source-reference closure of the ten current manuscript roots.
+Contextual Novikov results, positive Property (H) examples, historical claims, and
+open-question status are not asserted to be re-proved. Scalars remain real.

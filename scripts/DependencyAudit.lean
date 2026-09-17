@@ -3,15 +3,15 @@ import Lean
 open Lean Elab Command
 run_cmd do
   let env ← getEnv
-  let roots := #[``PropertyH.sphere_maps_eventually_nullhomotopic_coarse,
+  let roots := #[``PropertyH.sphere_maps_eventually_degreeZero_coarse,
     ``PropertyH.not_hasPropertyH_of_containsCoarseExpanders,
+    ``PropertyH.not_hasRationalPropertyH_of_containsCoarseExpanders,
     ``PropertyH.not_hasPropertyH_of_uniformlyContainsFiniteSup,
     ``PropertyH.uniformlyContainsFiniteSup_cZero,
     ``PropertyH.not_hasPropertyH_cZero,
-    ``PropertyH.not_standard_coarsely_universal_groups_of_hasPropertyH,
-    ``PropertyH.no_equiUniform_sphere_homeomorphisms,
+    ``PropertyH.exists_group_not_coarsely_embeddable_in_propertyH,
     ``PropertyH.exists_coarse_normalization,
-    ``PropertyH.ball_normalization_nullhomotopic,
+    ``PropertyH.ball_normalization_degreeZero,
     ``PropertyH.expander_poincare]
   let mut todo := roots
   let mut seen : NameSet := {}
