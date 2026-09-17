@@ -13,9 +13,9 @@ open scoped Topology
 theorem sphere_maps_eventually_nullhomotopic_coarse_varying
     (E : ExpanderFamily) (X Y : ℕ → Type*)
     [∀ n, NormedAddCommGroup (X n)] [∀ n, NormedSpace ℝ (X n)]
-    [∀ n, CompleteSpace (X n)]
+    [∀ n, FiniteDimensional ℝ (X n)]
     [∀ n, NormedAddCommGroup (Y n)] [∀ n, NormedSpace ℝ (Y n)]
-    [∀ n, CompleteSpace (Y n)]
+    [∀ n, FiniteDimensional ℝ (Y n)]
     {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)] (μ : ∀ n, Measure (Ω n))
     (j : ∀ n, Y n →ₗᵢ[ℝ] Lp ℝ 1 (μ n))
     (hE : EquiCoarseGraphEmbeddings E X)
@@ -25,13 +25,14 @@ theorem sphere_maps_eventually_nullhomotopic_coarse_varying
   exact sphere_maps_eventually_nullhomotopic_of_normalized E X Y μ j
     (exists_normalized_coarse_expander_embeddings E X hE) F hF
 
-/-- Source: `Thm.main`, degree zero in the reduced-homology sense. -/
+/-- Source: `Thm.main`, for finite-dimensional real normed spaces, with degree zero
+in the reduced-homology sense. Completeness follows from finite dimension. -/
 theorem sphere_maps_eventually_degreeZero_coarse
     (E : ExpanderFamily) (X Y : ℕ → Type*)
     [∀ n, NormedAddCommGroup (X n)] [∀ n, NormedSpace ℝ (X n)]
-    [∀ n, CompleteSpace (X n)]
+    [∀ n, FiniteDimensional ℝ (X n)]
     [∀ n, NormedAddCommGroup (Y n)] [∀ n, NormedSpace ℝ (Y n)]
-    [∀ n, CompleteSpace (Y n)]
+    [∀ n, FiniteDimensional ℝ (Y n)]
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     (j : ∀ n, Y n →ₗᵢ[ℝ] Lp ℝ 1 μ)
     (hE : EquiCoarseGraphEmbeddings E X)

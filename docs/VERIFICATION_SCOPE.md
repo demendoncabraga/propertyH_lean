@@ -8,8 +8,9 @@ No project axiom or proof placeholder substitutes for its construction.
 
 ## Degree and Property (H)
 
-The manuscript uses degree zero for arbitrary Banach spheres without assuming
-finite dimension or equal dimensions. With the author's explicit approval,
+The main theorem concerns spheres of finite-dimensional real normed spaces;
+completeness follows automatically. Equal dimensions are not assumed.
+Proposition 5 still concerns arbitrary Banach spaces. With the author's explicit approval,
 `HasDegreeZero` means that the induced maps on reduced integral singular homology
 vanish in every nonnegative degree. It is not defined as null-homotopy. The proof
 constructs a null-homotopy and deduces this conclusion. Where integer degree can

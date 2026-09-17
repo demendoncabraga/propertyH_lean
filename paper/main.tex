@@ -91,7 +91,7 @@
  
  
 
- \newcommand{\cg}[1]{{\color{blue}#1}}
+ % \newcommand{\cg}[1]{{\color{blue}#1}}
 
  
   
@@ -148,7 +148,7 @@ USA and Faculty of Electrical Engineering, Czech Technical University in Prague,
 \urladdr{\url{https://people.tamu.edu/~t-schlumprecht/}}
 \thanks{Th. Schlumprecht was partially supported by NSF Award DMS-2349322.}
 \begin{abstract}
-    We show that if a sequence of expander graphs equi-coarsely embeds into a Banach space, then this Banach space  fails Kasparov and Yu's Property (H).  We provide a Lean verification of this statements.
+    We show that if a sequence of expander graphs equi-coarsely embeds into a Banach space, then this Banach space  fails Kasparov and Yu's Property (H).  Consequently,  no Banach space with Property (H) can be coarsely universal for all countable groups. We provide a Lean verification of our results.
 \end{abstract}
 
 \maketitle
@@ -199,12 +199,12 @@ replace the Hilbert space in Yu's theorem by larger class of Banach spaces. Kasp
 and Yu carried this out in \cite{KasparovYu2012GeoTop}, where they introduced
 a property of Banach spaces called \emph{Property (H)} and showed that the
 Novikov conjecture holds for any countable group which coarsely embeds into a
-Banach space satisfying it (\cite[Theorem 1.2]{KasparovYu2012GeoTop}). We recall that a Banach space $X$ has Property (H) if there are a uniformly continuous function $F\colon S_X\to S_{\ell_2}$ and increasing sequences of finite dimensional Banach spaces $(X_n)_n$ and $(H_n)_n$ of $X$ and of the Hilbert space $\ell_2$, respectively, such that $X=\overline{\bigcup_nX_n}$, each $F(S_{X_n})\subseteq S_{H_n}$, and each $F_{\restriction S_{X_n}}\colon  S_{X_n}\to S_{H_n}$ is a degree one map. If the degree one condition is replaced by the weaker condition of having nonzero degree, then $X$ is said to have {\it rational Property (H)}. At present, all known examples of Banach spaces with Property (H) come from Mazur's modified maps constructed by Odell and Schlumprecht in \cite{OdellSchlumprecht1994Acta} (e.g., this is the case for all separable Banach lattices with nontrivial cotype, see \cite[Theorem 1.1]{ChengWang2018JMAA}).
+Banach space satisfying it (\cite[Theorem 1.2]{KasparovYu2012GeoTop}). We recall that a Banach space $X$ has \emph{Property (H)} if there are a uniformly continuous function $F\colon S_X\to S_{\ell_2}$ and increasing sequences of finite dimensional Banach spaces $(X_n)_n$ and $(H_n)_n$ of $X$ and of the Hilbert space $\ell_2$, respectively, such that $X=\overline{\bigcup_nX_n}$, each $F(S_{X_n})\subseteq S_{H_n}$, and each $F_{\restriction S_{X_n}}\colon  S_{X_n}\to S_{H_n}$ is a degree one map. If the degree one condition is replaced by the weaker condition of having nonzero degree, then $X$ is said to have {\it rational Property (H)}. At present, all known examples of Banach spaces with Property (H) come from Mazur's modified maps constructed by Odell and Schlumprecht in \cite{OdellSchlumprecht1994Acta} (e.g., this is the case for all separable Banach lattices with nontrivial cotype, see \cite[Theorem 1.1]{ChengWang2018JMAA}).
 
 The theorem of Kasparov and Yu raises the possibility of settling the Novikov conjecture in a single stroke, reducing the problem to showing that every countable group admits a coarse embedding into a Property (H) space. The following theorem and corollaries show that this is impossible.
 
 \begin{theorem}\label{Thm.main}
-Let $(X_n)_n$ and $(Y_n)_n$ be sequences of Banach spaces such that $Y_n\subseteq L_1$ for all $n\in\N$. Let $(G_n=(V_n,E_n))_n$ be a sequence of expander graphs, and assume that there is a sequence of equi-coarse embeddings $(V_n\to X_n)_n$. Let $(F_n\colon S_{X_n}\to S_{Y_n})_n$ be a sequence of equi-uniformly continuous maps. Then, for all sufficiently large $n\in\N$, the maps $F_n$ have degree zero.
+Let $(X_n)_n$ and $(Y_n)_n$ be sequences of finite dimensional normed spaces such that $Y_n\subseteq L_1$ for all $n\in\N$. Let $(G_n=(V_n,E_n))_n$ be a sequence of expander graphs, and assume that there is a sequence of equi-coarse embeddings $(V_n\to X_n)_n$. Let $(F_n\colon S_{X_n}\to S_{Y_n})_n$ be a sequence of equi-uniformly continuous maps. Then, for all sufficiently large $n\in\N$, the maps $F_n$ have degree zero.
 \end{theorem}
 
 \begin{corollary}\label{Cor.Prop.H}
@@ -245,7 +245,7 @@ for all $A\subseteq V$ with $|A|\leq |V|/2$. A \emph{sequence of expander graphs
 
 \section{Proof of Main Result}
 
-We now start presenting the proof of Theorem \ref{Thm.main}. The arguments are  surprisingly simple and  only make use of a   standard Poincaré inequality satisfied by expanders: If $G=(V,E)$ is a $(k,h)$-expander, then  for any $f\colon V\to L_1$ we have
+We now start presenting the proof of Theorem \ref{Thm.main}. The arguments are surprisingly simple and use just two applications of the characteristic Poincaré inequality satisfied by expanders: If $G=(V,E)$ is a $(k,h)$-expander, then  for any $f\colon V\to L_1$ we have
      \begin{equation}\label{PIII}
 \frac{1}{|V|}\sum_{v\in V}\left\|f(v)-\frac{1}{|V|}\sum_{u\in V}f(u)\right\|\leq \frac{2k}{h}\Lip(f) \tag{\textbf{P.I.}}
   \end{equation}
@@ -314,7 +314,7 @@ Another trivial observation needed for the proof of Theorem \ref{Thm.main} is th
 \end{proposition}
  
 \begin{proof}
-Let $g_s\colon B_X\to B_X$, $s\in [0,1]$, be a homotopy from $g_0=\mathrm{Id}_{B_X}$ to the constant map $g_1\equiv 0$. Then the map $G_s(x)=f(g_s(x))/\|f(g_s(x))\|$ defines a homotopy \cg{in $S_Y$} from $G_0=F$ to the constant map $G_1\equiv f(0)/\|f(0)\|$. Since null-homotopic maps have degree zero, the conclusion follows.
+Let $g_s\colon B_X\to B_X$, $s\in [0,1]$, be a homotopy from $g_0=\mathrm{Id}_{B_X}$ to the constant map $g_1\equiv 0$. Then the map $G_s(x)=f(g_s(x))/\|f(g_s(x))\|$ defines a homotopy in $S_Y$ from $G_0=F$ to the constant map $G_1\equiv f(0)/\|f(0)\|$. Since null-homotopic maps have degree zero, the conclusion follows.
 \end{proof}
  
 
@@ -400,8 +400,11 @@ Then  \eqref{eq:ball} gives that
 By Proposition \ref{Prop.null.homotopy}, this shows that $f^n_1$ has degree zero for all $n\geq n_1$.\end{proof}
 
 
+% \subsection{AI usage disclaimer}
+% Theorem \ref{Thm.main} was obtained by  GPT-6 Astra with little input from the authors.   The organization and exposition of the paper are the authors' responsibility only. Moreover, all work done in collaboration with GPT-6 Astra  was independently checked and reworked by the authors,   who also take full responsibility for the correctness  and integrity of the work. 
+
 \subsection{AI usage disclaimer}
-Theorem \ref{Thm.main} was obtained by  GPT-6 Astra with little input from the authors.   The organization and exposition of the paper are the authors' responsibility only. Moreover, all work done in collaboration with GPT-6 Astra  was independently checked and reworked by the authors,   who also take full responsibility for the correctness  and integrity of the work. 
+A proof of Theorem \ref{Thm.main} was obtained by the authors using GPT-6 Astra with little of their own input. The first proposed proof used a family of Markov chains on the $\ell_\infty$-grids $\{-m,\dots, m\}^n$ that have uniform spectral gaps, with each chain being an $n$-fold $\ell_\infty$-product of a stationary, reversible chain on $\{-m,\dots, m\}$ with spectral gap independent of $m$. The authors recognized that a spectral gap was essentially all that was needed for the proof to go through and prompted GPT-6 for a new proof that would work for any Banach space coarsely containing bounded degree expanders. The authors independently verified the arguments and wrote the proofs and the rest of the article in their preferred style. The authors take full responsibility for the correctness and integrity of the work. 
 
 
 \subsection{Lean formalization}
@@ -417,7 +420,7 @@ The source files and verification instructions are available at
 The only external mathematical result supplied as an explicit
 hypothesis is Osajda's \cite[Theorem 4]{Osajda2020Acta}, used
 in Corollary \ref{Cor.Group}.
- 
+
 
 \subsection{Disclaimer on originality of the work} \label{disclaimer}
 A proof of the failure of rational Property (H) for $c_0$ appeared on arXiv on September 15th, 2026 in \cite{ChengChengWang}. We obtained the proofs of the results in this paper by September 13th, 2026, independent of \cite{ChengChengWang}. While results being obtained independently by different groups has always been part of mathematical research, we believe that this may become more common with the advent of new technologies. After some consideration, we decided to still present this paper as our final draft is short and the main results, Theorem~\ref{Thm.main} and Corollaries~\ref{Cor.Prop.H} and \ref{Cor.Group}, cover a potentially larger class of Banach spaces than just those which contain the finite dimensional $(\ell_\infty^n)_n$ with uniform distortion.
@@ -427,10 +430,6 @@ A proof of the failure of rational Property (H) for $c_0$ appeared on arXiv on S
 % and of Corollary~\ref{Corollary.Johnson} appeared on arXiv on September 15th, 2026 in \cite{ChengChengWang}. We obtained the proofs of the results in this paper by September 13th, 2026, independent of \cite{ChengChengWang}. While results being obtained independently by different groups has always been part of mathematical research, we believe that this may become more common with the advent of new technologies. After some consideration, we decided to still present this paper as our final draft is short and the main results, Theorem~\ref{Thm.main} and Corollary~\ref{Cor.Prop.H}, cover a potentially larger class of Banach spaces than just those of trivial cotype.
 % \end{disclaimer*}
 
-
-\subsection{Acknowledgements} This paper was written under the auspices of the
-American Institute of Mathematics (AIM) SQuaREs program as part of the
-``Nonlinear geometry of Banach spaces''  SQuaRE project. The authors are also indebted to Cynthia Bortolotto and João Pedro Ramos for sharing their files for Lean formalization; without this, the Lean formalization would not have been possible. B. M. Braga would also like to thank  Christian Rosendal,  Mitchel Taylor, and Cláudio Verdun for several discussions about Lean formalization.
 
  \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }

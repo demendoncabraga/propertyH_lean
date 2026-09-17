@@ -1,8 +1,8 @@
 # Source coverage review
 
 Authoritative manuscript: `paper/main.tex`.
-SHA256: `261e4624587497db03a3a2d07fef80e1bbf541c2f3c65884eac280783abbbb40`.
-Reviewed against the current revision on 2026-09-16. The manuscript was not edited.
+SHA256: `1a4f01003edff194d8910d7853249d9e5f1760383f90bfb7d722b08ca4d4c0e1`.
+Reviewed against the current revision on 2026-09-17. The manuscript was not edited.
 Commented-out LaTeX statements are excluded from the inventory.
 
 ## Current numbered results
@@ -11,7 +11,7 @@ All declaration names are in namespace `PropertyH`.
 
 | Paper | Hypotheses and conclusion | Declaration | File under `lean/PropertyH/` |
 | --- | --- | --- | --- |
-| Theorem 1, `Thm.main` | Banach spaces Xₙ,Yₙ with Yₙ linearly isometric to subspaces of L₁; equi-coarse expander embeddings into Xₙ; equi-uniformly continuous sphere maps Fₙ. Eventually Fₙ has degree zero. | `sphere_maps_eventually_degreeZero_coarse` | `CoarseMain.lean` |
+| Theorem 1, `Thm.main` | Finite-dimensional real normed spaces Xₙ,Yₙ with Yₙ linearly isometric to subspaces of L₁; equi-coarse expander embeddings into Xₙ; equi-uniformly continuous sphere maps Fₙ. Eventually Fₙ has degree zero. | `sphere_maps_eventually_degreeZero_coarse` | `CoarseMain.lean` |
 | Corollary 2, `Cor.Prop.H` | A Banach space containing equi-coarse expanders fails Property (H), including rational Property (H). | `not_hasPropertyH_of_containsCoarseExpanders`, `not_hasRationalPropertyH_of_containsCoarseExpanders` | `CoarseMain.lean` |
 | Corollary 2, in particular | Uniform distortion containment of every finite sup space implies failure of Property (H). | `not_hasPropertyH_of_uniformlyContainsFiniteSup` | `UniversalFinite.lean` |
 | Corollary 2, c₀ example | c₀ uniformly contains the finite sup spaces and fails Property (H). | `uniformlyContainsFiniteSup_cZero`, `not_hasPropertyH_cZero` | `UniversalFinite.lean`, `Corollaries.lean` |
@@ -44,7 +44,8 @@ functions, with lower control tending to infinity.
 - `UniformlyContainsFiniteSup`: maps of all finite sup spaces with one common
   symmetric biLipschitz bound. This includes linear uniform containment.
 - `HasDegreeZero`: all induced maps on reduced integral homology vanish. This
-  interpretation for arbitrary Banach spheres was explicitly approved by the author.
+  interpretation was explicitly approved by the author; the main theorem now
+  restricts its source and target spaces to finite dimension.
   `HasDegreeZero.homologyDegree_eq_zero` proves the integer-degree conclusion
   whenever homology generators are given.
 
@@ -89,3 +90,7 @@ Every retained source declaration is inventoried in `lean/coverage.json` and mus
 belong to the kernel/source-reference closure of the ten current manuscript roots.
 Contextual Novikov results, positive Property (H) examples, historical claims, and
 open-question status are not asserted to be re-proved. Scalars remain real.
+
+The main theorem and its shared coarse null-homotopy helper now assume finite
+dimension for both space families. Completeness is inferred, rather than assumed.
+The previous arbitrary-Banach-space main statement is replaced in place.

@@ -1,6 +1,6 @@
 {
   "source": "paper/main.tex",
-  "source_sha256": "261e4624587497db03a3a2d07fef80e1bbf541c2f3c65884eac280783abbbb40",
+  "source_sha256": "1a4f01003edff194d8910d7853249d9e5f1760383f90bfb7d722b08ca4d4c0e1",
   "inventory_complete": true,
   "verification_scope": "modulo_osajda",
   "paper_roots": [
@@ -278,7 +278,7 @@
     {
       "id": "R01",
       "source": "Thm.main",
-      "description": "Eventual degree zero under equi-coarse expander embeddings",
+      "description": "Equi-uniformly continuous sphere maps between finite-dimensional real normed spaces, with equi-coarse expander embeddings in the sources and linear L1 isometries for the targets, eventually have degree zero",
       "status": "verified",
       "declaration": "PropertyH.sphere_maps_eventually_degreeZero_coarse",
       "module": "PropertyH.CoarseMain"
